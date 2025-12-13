@@ -1,471 +1,161 @@
-<!-- START: FULL SITE (fresh build) -->
-
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nivas Kunj Interiors — Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivaskunj Interiors - Welcome</title>
+    
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --color-copper: #a0522d;
+            --color-teal: #407d72;
+            --color-background: #fcfcfc; 
+            --color-text: #2c2c2c;
+        }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+        /* 1. BASE SETUP (DESKTOP) */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: var(--color-background);
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; 
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: backgroundFadeIn 2s ease-out forwards;
+        }
 
-  <style>
-    :root{
-      --pearl-1:#f6eadf; /* gradient pearl beige */
-      --pearl-2:#efe5d6;
-      --ink:#222222;
-      --muted:#7b6f66;
-      --accent:#bfa882;
-      --glass:rgba(255,255,255,0.72);
-      --card-radius:14px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(135deg,var(--pearl-1),var(--pearl-2));color:var(--ink);-webkit-font-smoothing:antialiased}
+        /* 2. LOGO AND TEXT STYLES */
+        .logo-image {
+            width: 400px; 
+            height: auto;
+            opacity: 0;
+            animation: logoFadeIn 3s ease-out forwards;
+            animation-delay: 0.2s;
+            margin-bottom: 35px; 
+            display: block; 
+        }
 
-    /* container */
-    .container{max-width:1200px;margin:0 auto;padding:28px 6%}
+        .company-name {
+            font-size: 3.5rem; 
+            font-weight: 300; 
+            letter-spacing: 8px; 
+            color: var(--color-text);
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            animation-delay: 2.5s; 
+            text-align: center;
+        }
 
-    /* top nav */
-    .topbar{position:fixed;left:0;right:0;top:18px;display:flex;justify-content:space-between;align-items:center;padding:12px 6%;z-index:120}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(191,168,130,0.08),transparent);box-shadow:0 8px 28px rgba(38,34,30,0.05)}
-    .brand h1{font-family:'Playfair Display',serif;font-size:18px;margin:0}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;padding:8px 12px;border-radius:10px;transition:all .28s}
-    nav a:hover{background:var(--glass);color:var(--ink);transform:translateY(-4px)}
+        /* 3. TAGLINE - Polished and Standard */
+        .tagline {
+            font-size: 1.2rem; 
+            font-weight: 400; 
+            color: var(--color-teal);
+            margin-top: 10px;
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            animation-delay: 3s; 
+            text-align: center;
+        }
 
-    /* hero */
-    .hero{min-height:74vh;display:flex;align-items:center}
-    .hero-inner{max-width:780px}
-    .eyebrow{font-size:13px;color:var(--muted);letter-spacing:1px}
-    .headline{font-family:'Playfair Display',serif;font-size:48px;margin:14px 0 8px;line-height:1.02}
-    .lead{color:var(--muted);font-size:18px;margin-bottom:20px}
-    .cta{display:flex;gap:12px}
-    .btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--ink);color:#fff;box-shadow:0 14px 40px rgba(34,34,34,0.08)}
-    .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--muted)}
+        /* 4. THE LOADING BAR - MAXIMIZED LENGTH */
+        .loader-container {
+            width: 795px; /* MAXIMIZED LENGTH (approx 30% increase from 550px) */
+            height: 6px; 
+            background-color: #e0e0e0;
+            margin-top: 60px; 
+            border-radius: 3px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards; 
+            animation-delay: 4s; 
+        }
 
-    /* featured projects */
-    .section{margin-top:36px}
-    .section h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin:0 0 14px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+        .loader-bar {
+            height: 100%;
+            width: 0%; 
+            background-color: var(--color-copper); 
+            animation: loadProgressLeftToRight 2.5s linear forwards;
+            animation-delay: 4s;
+        }
 
-    .project{position:relative;overflow:hidden;border-radius:var(--card-radius);box-shadow:0 12px 40px rgba(10,10,10,0.04);cursor:pointer;transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s}
-    .project:hover{transform:translateY(-12px);box-shadow:0 40px 100px rgba(10,10,10,0.12)}
-    .project .media{height:240px;background-size:cover;background-position:center;transition:transform .8s}
-    .project:hover .media{transform:scale(1.06)}
-    .project .info{padding:16px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.02))}
-    .project .title{font-weight:700;margin:0 0 6px}
-    .project .sub{color:var(--muted);font-size:13px}
-    .project .hover-meta{position:absolute;left:18px;bottom:70px;color:#fff;text-shadow:0 16px 30px rgba(0,0,0,0.5);opacity:0;transition:opacity .36s}
-    .project:hover .hover-meta{opacity:1}
+        /* --- DEFINING THE ANIMATIONS (KEYFRAMES) --- */
+        
+        @keyframes backgroundFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    /* designs */
-    .small-card{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#fff;box-shadow:0 8px 30px rgba(10,10,10,0.04)}
-    .small-card .thumb{width:78px;height:78px;border-radius:10px;background-size:cover;background-position:center}
+        @keyframes logoFadeIn {
+            to { opacity: 1; }
+        }
 
-    /* footer */
-    footer{padding:36px 0;color:var(--muted);text-align:center}
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
-    /* lightbox */
-    #lightbox{position:fixed;inset:0;background:rgba(10,10,10,0.9);display:none;align-items:center;justify-content:center;padding:28px;z-index:260}
-    #lightbox img{max-width:94%;max-height:86%;border-radius:12px}
+        @keyframes loadProgressLeftToRight {
+            0% { width: 0%; }
+            100% { width: 100%; } 
+        }
+        
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media only screen and (max-width: 600px) {
+            
+            .logo-image {
+                width: 200px; 
+                margin-bottom: 20px;
+            }
 
-    @media (max-width:900px){.headline{font-size:34px}.topbar{padding:8px 5%}nav{display:none}}
-  </style>
+            .company-name {
+                font-size: 2rem; 
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 0.9rem; 
+            }
+
+            .loader-container {
+                width: 80%; /* Maintain proportional length on mobile */
+                margin-top: 40px;
+            }
+        }
+    </style>
+
+    <meta http-equiv="refresh" content="7; url=https://nivaskunjinteriors.netlify.app/" />
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden>
-        <!-- Architectural line monogram (NKI) -->
-        <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="42" height="42" rx="10" fill="none" stroke="#bfa882" stroke-width="1.1"/>
-          <g stroke="#6b5847" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path d="M10 32 V12 L18 24 L26 12 V32" />
-            <path d="M30 12 V32" />
-            <path d="M22 24 L30 14" />
-            <path d="M22 24 L30 34" />
-          </g>
-        </svg>
-      </div>
-      <div>
-        <h1>Nivas Kunj Interiors</h1>
-        <div style="font-size:12px;color:var(--muted)">Interior Design Studio</div>
-      </div>
+    <div class="intro-container">
+        <img src="https://github.com/ranadeep-banik137/NivasKunjInteriors/blob/main/logo%20transparent%20PNG.png?raw=true" 
+             alt="Nivaskunj Interiors Logo" 
+             class="logo-image">
+        
+        <div class="company-name">NIVASKUNJ INTERIORS</div>
+        
+        <div class="tagline">Designing Your Dream Space</div>
+
+        <div class="loader-container">
+            <div class="loader-bar"></div>
+        </div>
     </div>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="designs.html">Designs</a>
-      <a href="layouts.html">Layouts</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <script type="text/javascript">
+        // Total animation time is 6.5 seconds. Redirect set to 6.8 seconds.
+        setTimeout(function() {
+            // REDIRECTS TO THE NEW URL
+            window.location.replace("https://nivaskunjinteriors.netlify.app/");
+        }, 6800); 
+    </script>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="eyebrow">Nivas Kunj Interiors</div>
-        <div class="headline">Carefully considered interiors — quietly luxurious</div>
-        <div class="lead">We create calm, functional and beautiful interiors across residences and boutique commercial spaces. Thoughtful materials, considered proportions and timeless colour palettes.</div>
-        <div class="cta">
-          <a class="btn btn-primary" href="projects.html">View Projects</a>
-          <a class="btn btn-ghost" href="contact.html">Get in touch</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Selected Projects</h2>
-      <div class="grid">
-
-        <div class="project" onclick="location.href='projects.html#project-1'">
-          <div class="media" style="background-image:url('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1400&q=80')"></div>
-          <div class="hover-meta">Modern Living</div>
-          <div class="info">
-            <div class="title">Modern Living</div>
-            <div class="sub">Residential — Riverside apartment</div>
-          </div>
-        </div>
-
-        <div class="project" onclick="location.href='projects.html#project-2'">
-          <div class="media" style="background-image:url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=1400&q=80')"></div>
-          <div class="hover-meta">Luxury Bedroom</div>
-          <div class="info">
-            <div class="title">Luxury Bedroom</div>
-            <div class="sub">Residential — Hilltop Villa</div>
-          </div>
-        </div>
-
-        <div class="project" onclick="location.href='projects.html#project-3'">
-          <div class="media" style="background-image:url('https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=1400&q=80')"></div>
-          <div class="hover-meta">Minimal Kitchen</div>
-          <div class="info">
-            <div class="title">Minimal Kitchen</div>
-            <div class="sub">Residential — Urban Flat</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Design Collections</h2>
-      <div class="grid">
-        <div class="small-card" onclick="location.href='designs.html#rustic'">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80')"></div>
-          <div>
-            <div style="font-weight:700">Rustic</div>
-            <div style="color:var(--muted);font-size:13px">Warm timber, tactile surfaces</div>
-          </div>
-        </div>
-
-        <div class="small-card" onclick="location.href='designs.html#contemporary'">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80')"></div>
-          <div>
-            <div style="font-weight:700">Contemporary</div>
-            <div style="color:var(--muted);font-size:13px">Clean lines and considered contrast</div>
-          </div>
-        </div>
-
-        <div class="small-card" onclick="location.href='designs.html#minimal'">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80')"></div>
-          <div>
-            <div style="font-weight:700">Minimal</div>
-            <div style="color:var(--muted);font-size:13px">Quiet palettes, essential forms</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="expanded"/></div>
-
-  <footer>
-    <div class="container">© Nivas Kunj Interiors — Badurtala Lane, Krishnanagar, Agartala, Tripura West — 8794183828</div>
-  </footer>
-
-  <script>
-    function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').style.display='flex'}
-    function closeLightbox(){document.getElementById('lightbox').style.display='none';document.getElementById('lightbox-img').src=''}
-  </script>
 </body>
 </html>
-
-
-<!-- projects.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projects — Nivas Kunj Interiors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--pearl-1:#f6eadf;--pearl-2:#efe5d6;--ink:#222;--muted:#7b6f66;--accent:#bfa882}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(135deg,var(--pearl-1),var(--pearl-2));color:var(--ink)}
-    .wrap{max-width:1200px;margin:0 auto;padding:110px 6% 60px}
-    .back{color:var(--muted);text-decoration:none;font-weight:600;display:inline-block;margin-bottom:12px}
-    h1{font-family:'Playfair Display',serif;margin:6px 0 8px}
-    .lead{color:var(--muted);max-width:760px}
-
-    /* filters */
-    .filters{display:flex;gap:10px;margin:18px 0}
-    .filter{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,0.03);cursor:pointer;font-weight:700}
-    .filter.active{background:var(--ink);color:#fff}
-
-    /* masonry-like grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:700px){.grid{grid-template-columns:1fr}}
-
-    .tile{position:relative;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(10,10,10,0.06);transition:transform .36s,box-shadow .36s;cursor:pointer}
-    .tile:hover{transform:translateY(-12px);box-shadow:0 60px 140px rgba(10,10,10,0.12)}
-    .tile .img{height:320px;background-size:cover;background-position:center;transition:transform .8s}
-    .tile:hover .img{transform:scale(1.05)}
-    .flag{position:absolute;left:18px;top:18px;background:rgba(255,255,255,0.95);padding:10px 12px;border-radius:10px;font-weight:700}
-    .tile .body{padding:18px}
-    .tile h3{margin:0 0 6px}
-    .tile p{color:var(--muted);margin:0}
-    .tile .actions{display:flex;gap:10px;margin-top:12px}
-    .btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-
-    /* modal detail */
-    .modal{position:fixed;inset:0;background:rgba(8,8,8,0.78);display:none;align-items:flex-start;justify-content:center;padding:40px;z-index:300}
-    .panel{background:#fff;border-radius:12px;max-width:1100px;width:100%;overflow:auto}
-    .media{display:grid;grid-template-columns:1fr 380px}
-    .gallery img{width:100%;display:block;margin-bottom:10px;border-radius:8px}
-    .close{position:absolute;right:22px;top:18px;background:#fff;border-radius:8px;padding:8px 10px;border:none;cursor:pointer}
-    @media(max-width:900px){.media{grid-template-columns:1fr}}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <a class="back" href="index.html">← Home</a>
-    <h1>Projects</h1>
-    <p class="lead">Explore completed and in-progress work. Use filters to refine.</p>
-
-    <div class="filters" id="filters">
-      <div class="filter active" data-filter="all">All</div>
-      <div class="filter" data-filter="residential">Residential</div>
-      <div class="filter" data-filter="commercial">Commercial</div>
-      <div class="filter" data-filter="kitchen">Kitchens</div>
-    </div>
-
-    <div class="grid" id="grid"></div>
-  </div>
-
-  <div class="modal" id="modal" onclick="closeModal(event)">
-    <div class="panel">
-      <button class="close" onclick="closeModal(event)">Close ×</button>
-      <div class="media">
-        <div class="gallery" id="gallery"></div>
-        <div class="content" style="padding:18px">
-          <h2 id="modal-title"></h2>
-          <div id="modal-meta" style="color:var(--muted);margin-bottom:10px"></div>
-          <p id="modal-desc"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const DATA = [
-      {id:'p1',title:'Modern Living — Riverside',meta:'Residential • 2400 sqft • 2024',tags:['residential'],cover:'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=2000&q=80',gallery:['https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1600&q=80','https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80'],desc:'A full interior revamp focusing on light, timber and flexible layouts.'},
-      {id:'p2',title:'Luxury Bedroom — Hilltop',meta:'Residential • 900 sqft • 2023',tags:['residential'],cover:'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=2000&q=80',gallery:['https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=1600&q=80'],desc:'A calm bedroom with layered textures and hidden storage solutions.'},
-      {id:'p3',title:'Minimal Kitchen — Urban Flat',meta:'Residential • 320 sqft • 2022',tags:['residential','kitchen'],cover:'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=2000&q=80',gallery:['https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=1600&q=80'],desc:'Compact kitchen design with practical storage and matte finishes.'},
-      {id:'p4',title:'Boutique Cafe — Downtown',meta:'Commercial • 1200 sqft • 2025',tags:['commercial'],cover:'https://images.unsplash.com/photo-1475855581690-80accde3ae8f?w=2000&q=80',gallery:['https://images.unsplash.com/photo-1475855581690-80accde3ae8f?w=1600&q=80'],desc:'Small cafe interior with warm timber counters and community seating.'}
-    ];
-
-    const grid=document.getElementById('grid');
-    function render(filter='all'){
-      grid.innerHTML='';
-      const list = DATA.filter(d=> filter==='all' ? true : d.tags.includes(filter));
-      list.forEach(item=>{
-        const el=document.createElement('article');el.className='tile';
-        el.innerHTML=`<div class="img" style="background-image:url('${item.cover}')"></div><div class="flag">${item.tags[0]||'Project'}</div><div class="body"><h3>${item.title}</h3><p>${item.meta}</p><div class=\"actions\"><button class=\"btn\" onclick=\"openModal('${item.id}',event)\">Quick view</button><a class=\"btn\" href=\"project-${item.id}.html\">Open page</a></div></div>`;
-        grid.appendChild(el);
-      });
-    }
-    render();
-
-    document.getElementById('filters').addEventListener('click',e=>{
-      const f=e.target.closest('.filter'); if(!f) return;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));f.classList.add('active');render(f.dataset.filter);
-    });
-
-    function openModal(id,e){e.stopPropagation();const item = DATA.find(x=>x.id===id);if(!item) return;document.getElementById('modal-title').innerText=item.title;document.getElementById('modal-meta').innerText=item.meta;document.getElementById('modal-desc').innerText=item.desc;const gal=document.getElementById('gallery');gal.innerHTML='';item.gallery.forEach(s=>{const i=document.createElement('img');i.src=s;gal.appendChild(i)});document.getElementById('modal').style.display='flex'}
-    function closeModal(e){e.stopPropagation();document.getElementById('modal').style.display='none'}
-  </script>
-</body>
-</html>
-
-
-<!-- designs.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Design Collections — Nivas Kunj Interiors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--pearl-1:#f6eadf;--pearl-2:#efe5d6;--ink:#222;--muted:#7b6f66}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(135deg,var(--pearl-1),var(--pearl-2));color:var(--ink)}
-    .wrap{max-width:1200px;margin:0 auto;padding:110px 6% 60px}
-    a.back{color:var(--muted);text-decoration:none;font-weight:600;display:inline-block;margin-bottom:12px}
-    h1{font-family:'Playfair Display',serif;margin:6px 0 8px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-
-    .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(10,10,10,0.05);transition:transform .36s}
-    .card:hover{transform:translateY(-10px)}
-    .card-media{height:220px;background-size:cover;background-position:center}
-    .card-meta{padding:14px}
-    .card-meta strong{display:block}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <a class="back" href="index.html">← Home</a>
-    <h1>Design Collections</h1>
-    <p class="lead">Curated interior styles you can mix and match for your project.</p>
-
-    <div class="grid">
-      <div class="card"><div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400&q=80')"></div><div class="card-meta"><strong>Rustic</strong><div>Warm timber, tactile surfaces</div></div></div>
-      <div class="card"><div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=1400&q=80')"></div><div class="card-meta"><strong>Classic</strong><div>Timeless proportion and detail</div></div></div>
-      <div class="card"><div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&q=80')"></div><div class="card-meta"><strong>Contemporary</strong><div>Sleek lines and subtle contrast</div></div></div>
-
-      <div class="card"><div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1400&q=80')"></div><div class="card-meta"><strong>Minimal</strong><div>Quiet palettes, essential forms</div></div></div>
-      <div class="card"><div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1400&q=80')"></div><div class="card-meta"><strong>Boho</strong><div>Layered textiles and artisan pieces</div></div></div>
-    </div>
-  </div>
-</body>
-</html>
-
-
-<!-- layouts.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Layouts — Nivas Kunj Interiors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--pearl-1:#f6eadf;--pearl-2:#efe5d6;--ink:#222;--muted:#7b6f66}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(135deg,var(--pearl-1),var(--pearl-2));color:var(--ink)}
-    .wrap{max-width:1200px;margin:0 auto;padding:110px 6% 60px}
-    a.back{color:var(--muted);text-decoration:none;font-weight:600;display:inline-block;margin-bottom:12px}
-    h1{font-family:'Playfair Display',serif;margin:6px 0 8px}
-    .note{background:#fff;padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(44,42,41,.06)}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <a class="back" href="index.html">← Home</a>
-    <h1>Layouts</h1>
-    <div class="note">
-      <p>We provide 2D/3D layout planning, space planning and circulation diagrams. Below are examples and placeholders — replace with exported layout images for client-ready documents.</p>
-      <p><strong>Example:</strong> Modular kitchen plan, living/dining flow, bedroom zones, and space optimization diagrams.</p>
-    </div>
-
-    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
-      <div style="background:#fff;border-radius:12px;padding:12px">Placeholder for layout image 1</div>
-      <div style="background:#fff;border-radius:12px;padding:12px">Placeholder for layout image 2</div>
-      <div style="background:#fff;border-radius:12px;padding:12px">Placeholder for layout image 3</div>
-    </div>
-  </div>
-</body>
-</html>
-
-
-<!-- contact.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Nivas Kunj Interiors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--pearl-1:#f6eadf;--pearl-2:#efe5d6;--ink:#222;--muted:#7b6f66;--accent:#bfa882}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui;background:linear-gradient(135deg,var(--pearl-1),var(--pearl-2));color:var(--ink)}
-    .wrap{max-width:1100px;margin:0 auto;padding:110px 6% 60px;display:grid;grid-template-columns:1fr 360px;gap:28px}
-    @media(max-width:900px){.wrap{grid-template-columns:1fr;padding:90px 6% 40px}}
-    a.back{color:var(--muted);text-decoration:none;font-weight:600;display:inline-block;margin-bottom:12px}
-    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,.06)}
-    label{display:block;font-weight:700;margin-bottom:6px}
-    input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #eee;margin-bottom:12px}
-    .map{background:#f7f4ef;padding:18px;border-radius:10px}
-    .socials a{display:inline-block;margin-right:12px;color:var(--muted);text-decoration:none;font-weight:700}
-
-    /* slide-in top effect */
-    .slide-from-top{animation:slideIn .7s cubic-bezier(.2,.9,.2,1) both}
-    @keyframes slideIn{from{transform:translateY(-18px);opacity:0}to{transform:none;opacity:1}}
-  </style>
-</head>
-<body>
-  <div class="wrap slide-from-top">
-    <div>
-      <a class="back" href="index.html">← Home</a>
-      <div class="card">
-        <h2>Contact</h2>
-        <p style="margin:6px 0 12px"><strong>Nivas Kunj Interiors</strong><br>Badurtala Lane, Krishnanagar, Agartala, Tripura West, 799001<br>Phone: <a href="tel:8794183828">8794183828</a></p>
-
-        <label for="name">Name</label>
-        <input id="name" placeholder="Your full name">
-        <label for="email">Email</label>
-        <input id="email" placeholder="you@example.com">
-        <label for="message">Message</label>
-        <textarea id="message" rows="6" placeholder="Tell us about your project..."></textarea>
-        <button onclick="submitForm()" style="padding:12px 16px;border-radius:10px;border:0;background:var(--ink);color:#fff;font-weight:700">Send message</button>
-
-        <p style="margin-top:14px;color:var(--muted)">Instagram / Facebook links and Google Maps link will be added manually.</p>
-      </div>
-    </div>
-
-    <aside>
-      <div class="map">Google Maps placeholder — add your map link/embed here.</div>
-      <div style="margin-top:18px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(10,10,10,.04)">
-        <strong>Social</strong>
-        <div class="socials" style="margin-top:8px">
-          <a href="#">Instagram (add)</a>
-          <a href="#">Facebook (add)</a>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <script>
-    function submitForm(){const n=document.getElementById('name').value;const e=document.getElementById('email').value;const m=document.getElementById('message').value;if(!n||!e||!m){alert('Please fill name, email and message');return}alert('Message ready (demo). I can wire to Formspree/Netlify when you want.');document.getElementById('name').value='';document.getElementById('email').value='';document.getElementById('message').value=''}
-  </script>
-</body>
-</html>
-
-
-<!-- project-template.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Project Template — Nivas Kunj Interiors</title>
-  <style>body{font-family:Inter,system-ui;padding:32px}</style>
-</head>
-<body>
-  <h1>Project Title</h1>
-  <p>Use this page as a starting template to create detailed, full-width project pages. Replace images and text with project-specific content.</p>
-</body>
-</html>
-
-<!-- END: FULL SITE -->
