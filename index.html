@@ -13,9 +13,10 @@
 <body>
 
     <header class="main-header">
-        <div class="logo">
-            <span class="logo-initials">NK</span> Nivas Kunj Interiors
-        </div>
+        <a href="#" class="logo">
+            <img src="https://github.com/ranadeep-banik137/NivasKunjInteriors/blob/main/logo%20transparent%20PNG.png?raw=true" alt="Nivas Kunj Interiors Logo" class="logo-img">
+            <span class="company-name">Nivas Kunj Interiors</span>
+        </a>
         <nav>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#designs" class="nav-link">Designs</a>
@@ -25,18 +26,53 @@
     </header>
 
     <section id="hero" class="hero-section">
-        <div class="hero-content">
-            <h1 class="staggered-heading">
-                <span>Carefully</span> 
-                <span>Considered</span> 
-                <span>Interiors.</span>
-            </h1>
-            <p class="hero-tagline">We design spaces that speak of enduring elegance and quiet luxury.</p>
-            <a href="#projects" class="hero-cta">View Featured Work <i class="fas fa-arrow-right"></i></a>
+        <div class="hero-slider-container">
+            <div class="hero-slider-track">
+                
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/6585764/pexels-photo-6585764.jpeg?auto=compress&cs=tinysrgb&w=1600');" 
+                     data-heading="Carefully Considered Interiors." 
+                     data-tagline="We design spaces that speak of enduring elegance and quiet luxury." 
+                     data-cta-text="View Signature Projects"
+                     data-cta-href="#projects">
+                </div>
+
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/7167073/pexels-photo-7167073.jpeg');" 
+                     data-heading="The Art of Thoughtful Materials." 
+                     data-tagline="Combining natural textures and bespoke finishes for a refined atmosphere." 
+                     data-cta-text="Explore Materials"
+                     data-cta-href="#about">
+                </div>
+                
+                <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/5883718/pexels-photo-5883718.jpeg');" 
+                     data-heading="Seamless Project Management." 
+                     data-tagline="From initial concept to final installation, we ensure a high-end, seamless result." 
+                     data-cta-text="Initiate Consultation"
+                     data-cta-href="#contact">
+                </div>
+
+            </div>
         </div>
+
+        <div class="hero-content">
+            <h1 class="staggered-heading" id="hero-heading">
+                </h1>
+            <p class="hero-tagline" id="hero-tagline"></p>
+            <a href="#projects" class="hero-cta" id="hero-cta">
+                <span id="hero-cta-text"></span> <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
         <div class="hero-scroll-indicator">Scroll to Explore</div>
+        
+        <div class="hero-slider-dots" id="hero-dots">
+            <span class="dot active" data-slide-index="0"></span>
+            <span class="dot" data-slide-index="1"></span>
+            <span class="dot" data-slide-index="2"></span>
+        </div>
+
+        <button class="hero-arrow left" onclick="changeHeroSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="hero-arrow right" onclick="changeHeroSlide(1)"><i class="fas fa-chevron-right"></i></button>
     </section>
-    
     <section id="projects" class="content-section projects-grid-section">
         <div class="section-intro-vertical">
             <h2 class="section-title">01 / Featured Projects</h2>
@@ -73,28 +109,99 @@
     <hr class="section-divider">
 
     <section id="designs" class="content-section designs-gallery-section">
-        <h2 class="section-title centered-title">02 / Design Layouts & Concepts</h2>
-        <p class="section-description centered-description">A curated look into our tailored environments.</p>
+    <h2 class="section-title centered-title">02 / Design Layouts & Concepts</h2>
+    <p class="section-description centered-description">
+        Interior styles thoughtfully curated for every lifestyle.
+    </p>
 
-        <div class="design-grid">
-            <div class="design-item item-1">
-                <img src="https://images.pexels.com/photos/4993094/pexels-photo-4993094.jpeg" alt="Master Bedroom concept">
-                <div class="design-caption">Master Suites</div>
+    <div class="design-carousel">
+
+        <button class="carousel-arrow left" onclick="moveSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="carousel-track">
+
+            <div class="carousel-slide" data-style="Art Deco Interiors">
+                <h2 class="design-style-header">Art Deco Interiors</h2>
+                <div class="style-grid">
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/4993094/pexels-photo-4993094.jpeg" alt="Art Deco Bedroom" data-label="Art Deco Bedroom">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/6588598/pexels-photo-6588598.jpeg" alt="Elegant Master Suite" data-label="Elegant Master Suite">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg" alt="Opulent Living Room" data-label="Opulent Living Room">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg" alt="Streamline Kitchen" data-label="Streamline Kitchen">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="Geometric Home Office" data-label="Geometric Home Office">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Luxurious Washroom" data-label="Luxurious Washroom">
+                    </div>
+                </div>
             </div>
-            <div class="design-item item-2">
-                <img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Living Room concept">
-                <div class="design-caption">Living Spaces</div>
+
+            <div class="carousel-slide" data-style="Contemporary Interiors">
+                <h2 class="design-style-header">Contemporary Interiors</h2>
+                <div class="style-grid">
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg" alt="Open Concept Lounge" data-label="Open Concept Lounge">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg" alt="Minimalist Bedroom" data-label="Minimalist Bedroom">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg" alt="Modern Hallway" data-label="Modern Hallway">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg" alt="Clean Dining Area" data-label="Clean Dining Area">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/6585758/pexels-photo-6585758.jpeg" alt="Loft Style Seating" data-label="Loft Style Seating">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Neutral Living Space" data-label="Neutral Living Space">
+                    </div>
+                </div>
             </div>
-            <div class="design-item item-3">
-                <img src="https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg" alt="Dining Area concept">
-                <div class="design-caption">Dining & Utility</div>
+
+            <div class="carousel-slide" data-style="Industrial Interiors">
+                <h2 class="design-style-header">Industrial Interiors</h2>
+                <div class="style-grid">
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg" alt="Exposed Brick Office" data-label="Exposed Brick Office">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg" alt="Concrete Loft" data-label="Concrete Loft">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Raw Aesthetics Living" data-label="Raw Aesthetics Living">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg" alt="Metal Fixture Bathroom" data-label="Metal Fixture Bathroom">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg" alt="Workshop Vibe Bedroom" data-label="Workshop Vibe Bedroom">
+                    </div>
+                    <div class="design-image-wrapper">
+                        <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Utility Sink Washroom" data-label="Utility Sink Washroom">
+                    </div>
+                </div>
             </div>
-            <div class="design-item item-4">
-                <img src="https://images.pexels.com/photos/827518/pexels-photo-827518.jpeg" alt="Home Office concept">
-                <div class="design-caption">Home Office</div>
-            </div>
+
         </div>
-    </section>
+
+        <button class="carousel-arrow right" onclick="moveSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</section>
 
     <section id="about" class="content-section about-philosophy-section">
         <div class="about-content">
@@ -147,8 +254,144 @@
         <p>© 2025 Nivas Kunj Interiors. Designed for enduring elegance.</p>
     </footer>
 
+    <script>
+        // --- 1. Design Carousel Logic (Existing) ---
+        function initializeDesignCaptions() {
+            const imageWrappers = document.querySelectorAll('.design-image-wrapper');
+
+            imageWrappers.forEach(wrapper => {
+                const img = wrapper.querySelector('img');
+                const label = img.getAttribute('data-label');
+                
+                if (label && !wrapper.querySelector('.design-image-caption')) {
+                    const caption = document.createElement('div');
+                    caption.className = 'design-image-caption';
+                    caption.textContent = label;
+                    wrapper.appendChild(caption);
+                }
+            });
+        }
+        
+        let currentSlide = 0;
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        
+        // --- 2. Hero Slider Logic (COMPLETELY REWRITTEN TO CROSS-FADE) ---
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroDots = document.querySelectorAll('.hero-slider-dots .dot');
+
+        const heroHeading = document.getElementById('hero-heading');
+        const heroTagline = document.getElementById('hero-tagline');
+        const heroCtaText = document.getElementById('hero-cta-text');
+        const heroCta = document.getElementById('hero-cta'); 
+        const heroContent = document.querySelector('.hero-content'); 
+
+        let heroInterval;
+        const SLIDE_DURATION = 6000; // 6 seconds for auto-slide
+        const FADE_TIME = 1200; // Matches CSS transition time for the image crossfade
+
+        function updateHeroContentData(index) {
+            const slide = heroSlides[index];
+            const headingText = slide.getAttribute('data-heading');
+            const taglineText = slide.getAttribute('data-tagline');
+            const ctaText = slide.getAttribute('data-cta-text');
+            const ctaHref = slide.getAttribute('data-cta-href'); 
+
+            // Parse heading into staggered structure
+            const words = headingText.split(' ');
+            heroHeading.innerHTML = `
+                <span>${words[0]}</span> 
+                <span>${words.slice(1).join(' ')}</span>
+            `;
+            heroTagline.textContent = taglineText;
+            heroCtaText.textContent = ctaText;
+            heroCta.setAttribute('href', ctaHref);
+        }
+
+        function updateHeroSlider(index) {
+            currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+            
+            // 1. Start fading out the text content for smoothness (0.5s transition)
+            heroContent.style.opacity = 0;
+
+            // 2. Wait for text to hide, then switch image and update text data
+            setTimeout(() => {
+                
+                // Remove 'active' class from all slides
+                heroSlides.forEach(slide => slide.classList.remove('active'));
+                
+                // Add 'active' class to the new slide, which triggers CSS opacity: 1 (The image crossfade)
+                heroSlides[currentHeroSlide].classList.add('active');
+                
+                // Update the content data while it is hidden
+                updateHeroContentData(currentHeroSlide); 
+                
+                // Wait for the image crossfade to complete (FADE_TIME)
+                setTimeout(() => {
+                    
+                    // 3. Fade the new content back in
+                    heroContent.style.opacity = 1; 
+
+                }, FADE_TIME); 
+
+            }, 500); // Wait 0.5s for the text to fully fade out
+
+            // Update dots
+            heroDots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentHeroSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function changeHeroSlide(direction) {
+            // Clear and restart the automatic timer on manual navigation
+            clearInterval(heroInterval);
+            updateHeroSlider(currentHeroSlide + direction);
+            startHeroSlider();
+        }
+
+        function startHeroSlider() {
+            // Initial content setup and ensures the first slide is active on load
+            heroSlides[currentHeroSlide].classList.add('active');
+            updateHeroContentData(currentHeroSlide);
+            heroContent.style.opacity = 1; 
+
+            // Set up auto sliding
+            heroInterval = setInterval(() => {
+                updateHeroSlider(currentHeroSlide + 1);
+            }, SLIDE_DURATION + FADE_TIME); // Add fade time to duration to allow full crossfade
+        }
+
+        // Add event listeners to dots for manual navigation
+        heroDots.forEach((dot) => {
+            dot.addEventListener('click', (e) => {
+                const index = parseInt(e.target.getAttribute('data-slide-index'));
+                clearInterval(heroInterval);
+                updateHeroSlider(index);
+                startHeroSlider();
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeDesignCaptions(); 
+            startHeroSlider(); // Start the hero slideshow
+        });
+    </script>
+
 </body>
 
 </html>
-
-
