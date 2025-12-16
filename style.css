@@ -688,19 +688,50 @@ footer {
     .style-grid {
         grid-template-columns: 1fr; 
     }
+    
+    /* FIX: Header Mobile Overlap Fixes (UPDATED) */
     .main-header {
         padding: 10px 5%;
+        flex-direction: column; /* Stack logo and nav vertically */
+        align-items: center; 
+        gap: 10px; 
     }
-    .nav-link {
-        margin-left: 15px;
+
+    .logo {
+        width: auto; /* Allow logo to size naturally */
+        justify-content: center; 
+        margin-bottom: 5px; 
+        padding-bottom: 5px; /* Add slight separation from nav */
+        border-bottom: 1px solid #eee; /* Visual separation */
     }
-    .cta-button {
-        padding: 6px 15px;
-    }
+
     .logo-img {
-        height: 30px; 
+        height: 35px; /* Slightly smaller logo */
     }
+    
     .company-name {
-        font-size: 1.2rem;
+        font-size: 1.4rem; /* Adjusted size */
+        top: 10px; /* Reduced vertical alignment for better centering */
+        margin-left: 5px; 
     }
+
+    .main-header nav {
+        width: 100%; 
+        display: flex;
+        justify-content: space-between; /* Space out the links more */
+        padding: 5px 0;
+    }
+
+    .nav-link {
+        margin-left: 0; 
+        font-size: 0.85rem; /* Slightly larger for readability */
+        padding: 0 5px; /* Add padding to make links tappable */
+    }
+
+    .cta-button {
+        padding: 4px 8px; /* Slightly smaller button */
+        font-size: 0.8rem;
+        margin-left: 0;
+    }
+    /* END FIXES */
 }
