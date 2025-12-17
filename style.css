@@ -84,16 +84,18 @@ a {
 .logo { 
     display: flex; 
     align-items: center; 
-    gap: 10px;
+    gap: 1px;
 }
 .logo-img { height: 40px; width: auto; display: block; }
 
 .company-name {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 700; 
+    font-weight: 600; 
     color: var(--color-dark);
     letter-spacing: 0.1px;
+    position: relative;
+    top: 14px;
     /* Fixed: Removed the top:14px and line-height:0.5 that caused mobile misalignment */
 }
 
