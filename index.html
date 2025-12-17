@@ -74,6 +74,7 @@
         <button class="hero-arrow left" onclick="changeHeroSlide(-1)"><i class="fas fa-chevron-left"></i></button>
         <button class="hero-arrow right" onclick="changeHeroSlide(1)"><i class="fas fa-chevron-right"></i></button>
     </section>
+
     <section id="projects" class="content-section projects-grid-section">
         <div class="section-intro-vertical">
             <h2 class="section-title">01 / Featured Projects</h2>
@@ -110,99 +111,59 @@
     <hr class="section-divider">
 
     <section id="designs" class="content-section designs-gallery-section">
-    <h2 class="section-title centered-title">02 / Design Layouts & Concepts</h2>
-    <p class="section-description centered-description">
-        Interior styles thoughtfully curated for every lifestyle.
-    </p>
+        <h2 class="section-title centered-title">02 / Design Layouts & Concepts</h2>
+        <p class="section-description centered-description">
+            Interior styles thoughtfully curated for every lifestyle.
+        </p>
 
-    <div class="design-carousel">
+        <div class="design-carousel">
+            <button class="carousel-arrow left" onclick="moveSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
 
-        <button class="carousel-arrow left" onclick="moveSlide(-1)">
-            <i class="fas fa-chevron-left"></i>
-        </button>
+            <div class="carousel-track">
+                <div class="carousel-slide" data-style="Art Deco Interiors">
+                    <h2 class="design-style-header">Art Deco Interiors</h2>
+                    <div class="style-grid">
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/4993094/pexels-photo-4993094.jpeg" alt="Art Deco Bedroom" data-label="Art Deco Bedroom"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/6588598/pexels-photo-6588598.jpeg" alt="Elegant Master Suite" data-label="Elegant Master Suite"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg" alt="Opulent Living Room" data-label="Opulent Living Room"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg" alt="Streamline Kitchen" data-label="Streamline Kitchen"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="Geometric Home Office" data-label="Geometric Home Office"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Luxurious Washroom" data-label="Luxurious Washroom"></div>
+                    </div>
+                </div>
 
-        <div class="carousel-track">
+                <div class="carousel-slide" data-style="Contemporary Interiors">
+                    <h2 class="design-style-header">Contemporary Interiors</h2>
+                    <div class="style-grid">
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg" alt="Open Concept Lounge" data-label="Open Concept Lounge"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg" alt="Minimalist Bedroom" data-label="Minimalist Bedroom"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg" alt="Modern Hallway" data-label="Modern Hallway"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg" alt="Clean Dining Area" data-label="Clean Dining Area"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/6585758/pexels-photo-6585758.jpeg" alt="Loft Style Seating" data-label="Loft Style Seating"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Neutral Living Space" data-label="Neutral Living Space"></div>
+                    </div>
+                </div>
 
-            <div class="carousel-slide" data-style="Art Deco Interiors">
-                <h2 class="design-style-header">Art Deco Interiors</h2>
-                <div class="style-grid">
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/4993094/pexels-photo-4993094.jpeg" alt="Art Deco Bedroom" data-label="Art Deco Bedroom">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/6588598/pexels-photo-6588598.jpeg" alt="Elegant Master Suite" data-label="Elegant Master Suite">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg" alt="Opulent Living Room" data-label="Opulent Living Room">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg" alt="Streamline Kitchen" data-label="Streamline Kitchen">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="Geometric Home Office" data-label="Geometric Home Office">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Luxurious Washroom" data-label="Luxurious Washroom">
+                <div class="carousel-slide" data-style="Industrial Interiors">
+                    <h2 class="design-style-header">Industrial Interiors</h2>
+                    <div class="style-grid">
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg" alt="Exposed Brick Office" data-label="Exposed Brick Office"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg" alt="Concrete Loft" data-label="Concrete Loft"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Raw Aesthetics Living" data-label="Raw Aesthetics Living"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg" alt="Metal Fixture Bathroom" data-label="Metal Fixture Bathroom"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg" alt="Workshop Vibe Bedroom" data-label="Workshop Vibe Bedroom"></div>
+                        <div class="design-image-wrapper"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Utility Sink Washroom" data-label="Utility Sink Washroom"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="carousel-slide" data-style="Contemporary Interiors">
-                <h2 class="design-style-header">Contemporary Interiors</h2>
-                <div class="style-grid">
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg" alt="Open Concept Lounge" data-label="Open Concept Lounge">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg" alt="Minimalist Bedroom" data-label="Minimalist Bedroom">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg" alt="Modern Hallway" data-label="Modern Hallway">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg" alt="Clean Dining Area" data-label="Clean Dining Area">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/6585758/pexels-photo-6585758.jpeg" alt="Loft Style Seating" data-label="Loft Style Seating">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Neutral Living Space" data-label="Neutral Living Space">
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-slide" data-style="Industrial Interiors">
-                <h2 class="design-style-header">Industrial Interiors</h2>
-                <div class="style-grid">
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg" alt="Exposed Brick Office" data-label="Exposed Brick Office">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg" alt="Concrete Loft" data-label="Concrete Loft">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/5998104/pexels-photo-5998104.jpeg" alt="Raw Aesthetics Living" data-label="Raw Aesthetics Living">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg" alt="Metal Fixture Bathroom" data-label="Metal Fixture Bathroom">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg" alt="Workshop Vibe Bedroom" data-label="Workshop Vibe Bedroom">
-                    </div>
-                    <div class="design-image-wrapper">
-                        <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" alt="Utility Sink Washroom" data-label="Utility Sink Washroom">
-                    </div>
-                </div>
-            </div>
-
+            <button class="carousel-arrow right" onclick="moveSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-
-        <button class="carousel-arrow right" onclick="moveSlide(1)">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-    </div>
-</section>
+    </section>
 
     <section id="about" class="content-section about-philosophy-section">
         <div class="about-content">
@@ -225,13 +186,21 @@
             <div class="contact-form-side">
                 <p class="section-description">Let’s discuss your project vision. Fill out the form below to begin.</p>
                 
-                <!-- <form class="contact-form" id="contactForm" action="#" method="POST"> -->
                 <form class="contact-form" id="contactForm">
                     <input type="text" name="name" placeholder="Your Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
                     <textarea name="message" placeholder="Your Project Brief/Query" rows="4" required></textarea>
                     <button type="submit" class="submit-btn">Send Inquiry</button>
                 </form>
+
+                <div id="successMessage" class="form-success-container" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="success-title">Enquiry Received</h3>
+                    <p class="success-text">Thanks for contacting us. Your vision is important to us; our team will review your brief and get back to you shortly.</p>
+                    <button class="reset-form-btn" onclick="location.reload()">Send Another Message</button>
+                </div>
             </div>
 
             <div class="contact-details-side">
@@ -257,14 +226,12 @@
     </footer>
 
     <script>
-        // --- 1. Design Carousel Logic (Existing) ---
+        // --- 1. Design Carousel Logic ---
         function initializeDesignCaptions() {
             const imageWrappers = document.querySelectorAll('.design-image-wrapper');
-
             imageWrappers.forEach(wrapper => {
                 const img = wrapper.querySelector('img');
                 const label = img.getAttribute('data-label');
-                
                 if (label && !wrapper.querySelector('.design-image-caption')) {
                     const caption = document.createElement('div');
                     caption.className = 'design-image-caption';
@@ -280,19 +247,15 @@
 
         function moveSlide(direction) {
             currentSlide += direction;
-
             if (currentSlide < 0) currentSlide = slides.length - 1;
             if (currentSlide >= slides.length) currentSlide = 0;
-
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
         
-        
-        // --- 2. Hero Slider Logic (COMPLETELY REWRITTEN TO CROSS-FADE) ---
+        // --- 2. Hero Slider Logic ---
         let currentHeroSlide = 0;
         const heroSlides = document.querySelectorAll('.hero-slide');
         const heroDots = document.querySelectorAll('.hero-slider-dots .dot');
-
         const heroHeading = document.getElementById('hero-heading');
         const heroTagline = document.getElementById('hero-tagline');
         const heroCtaText = document.getElementById('hero-cta-text');
@@ -300,8 +263,8 @@
         const heroContent = document.querySelector('.hero-content'); 
 
         let heroInterval;
-        const SLIDE_DURATION = 6000; // 6 seconds for auto-slide
-        const FADE_TIME = 1200; // Matches CSS transition time for the image crossfade
+        const SLIDE_DURATION = 6000;
+        const FADE_TIME = 1200;
 
         function updateHeroContentData(index) {
             const slide = heroSlides[index];
@@ -309,13 +272,8 @@
             const taglineText = slide.getAttribute('data-tagline');
             const ctaText = slide.getAttribute('data-cta-text');
             const ctaHref = slide.getAttribute('data-cta-href'); 
-
-            // Parse heading into staggered structure
             const words = headingText.split(' ');
-            heroHeading.innerHTML = `
-                <span>${words[0]}</span> 
-                <span>${words.slice(1).join(' ')}</span>
-            `;
+            heroHeading.innerHTML = `<span>${words[0]}</span><span>${words.slice(1).join(' ')}</span>`;
             heroTagline.textContent = taglineText;
             heroCtaText.textContent = ctaText;
             heroCta.setAttribute('href', ctaHref);
@@ -323,61 +281,32 @@
 
         function updateHeroSlider(index) {
             currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
-            
-            // 1. Start fading out the text content for smoothness (0.5s transition)
             heroContent.style.opacity = 0;
-
-            // 2. Wait for text to hide, then switch image and update text data
             setTimeout(() => {
-                
-                // Remove 'active' class from all slides
                 heroSlides.forEach(slide => slide.classList.remove('active'));
-                
-                // Add 'active' class to the new slide, which triggers CSS opacity: 1 (The image crossfade)
                 heroSlides[currentHeroSlide].classList.add('active');
-                
-                // Update the content data while it is hidden
                 updateHeroContentData(currentHeroSlide); 
-                
-                // Wait for the image crossfade to complete (FADE_TIME)
-                setTimeout(() => {
-                    
-                    // 3. Fade the new content back in
-                    heroContent.style.opacity = 1; 
-
-                }, FADE_TIME); 
-
-            }, 500); // Wait 0.5s for the text to fully fade out
-
-            // Update dots
+                setTimeout(() => { heroContent.style.opacity = 1; }, FADE_TIME); 
+            }, 500);
             heroDots.forEach((dot, i) => {
                 dot.classList.remove('active');
-                if (i === currentHeroSlide) {
-                    dot.classList.add('active');
-                }
+                if (i === currentHeroSlide) dot.classList.add('active');
             });
         }
 
         function changeHeroSlide(direction) {
-            // Clear and restart the automatic timer on manual navigation
             clearInterval(heroInterval);
             updateHeroSlider(currentHeroSlide + direction);
             startHeroSlider();
         }
 
         function startHeroSlider() {
-            // Initial content setup and ensures the first slide is active on load
             heroSlides[currentHeroSlide].classList.add('active');
             updateHeroContentData(currentHeroSlide);
             heroContent.style.opacity = 1; 
-
-            // Set up auto sliding
-            heroInterval = setInterval(() => {
-                updateHeroSlider(currentHeroSlide + 1);
-            }, SLIDE_DURATION + FADE_TIME); // Add fade time to duration to allow full crossfade
+            heroInterval = setInterval(() => { updateHeroSlider(currentHeroSlide + 1); }, SLIDE_DURATION + FADE_TIME);
         }
 
-        // Add event listeners to dots for manual navigation
         heroDots.forEach((dot) => {
             dot.addEventListener('click', (e) => {
                 const index = parseInt(e.target.getAttribute('data-slide-index'));
@@ -387,57 +316,46 @@
             });
         });
 
-
         document.addEventListener('DOMContentLoaded', () => {
             initializeDesignCaptions(); 
-            startHeroSlider(); // Start the hero slideshow
+            startHeroSlider();
+        });
+
+        // --- 3. Supabase Form Submission (UPDATED) ---
+        const SUPABASE_URL = 'https://wbhcvcsdpdandaxidnlg.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiaGN2Y3NkcGRhbmRheGlkbmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5NjMwMjksImV4cCI6MjA4MTUzOTAyOX0.n8R1OpFxilWbDfteODc-lyVF_qvntyRnJNVM3g9xCWs';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(contactForm);
+            const submission = {
+                customer_name: formData.get('name'),
+                email_id: formData.get('email'),
+                query_data: formData.get('message')
+            };
+
+            const { data, error } = await _supabase.from('raw_enquiries').insert([submission]);
+
+            if (error) {
+                console.error('Supabase Error:', error);
+                alert('Something went wrong. Please try again.');
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            } else {
+                // UI TOGGLE: Hide form, show success message
+                contactForm.style.display = 'none';
+                document.querySelector('.contact-form-side .section-description').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            }
         });
     </script>
-    <script>
-    // 1. Initialize Supabase (Replace with your actual keys)
-    const SUPABASE_URL = 'https://wbhcvcsdpdandaxidnlg.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiaGN2Y3NkcGRhbmRheGlkbmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5NjMwMjksImV4cCI6MjA4MTUzOTAyOX0.n8R1OpFxilWbDfteODc-lyVF_qvntyRnJNVM3g9xCWs';
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // 2. Handle Form Submission
-    const contactForm = document.getElementById('contactForm'); // Make sure your <form> has id="contactForm"
-
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Change button state to show progress
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = 'Sending...';
-        submitBtn.disabled = true;
-
-        // Get form data
-        const formData = new FormData(contactForm);
-        const submission = {
-            customer_name: formData.get('name'),
-            email_id: formData.get('email'),
-            query_data: formData.get('message')
-        };
-
-        // 3. Insert into Supabase
-        const { data, error } = await _supabase
-            .from('raw_enquiries')
-            .insert([submission]);
-
-        if (error) {
-            console.error('Supabase Error:', error);
-            alert('Something went wrong. Please try again.');
-        } else {
-            alert('Enquiry sent successfully!');
-            contactForm.reset();
-        }
-
-        // Reset button
-        submitBtn.innerText = originalBtnText;
-        submitBtn.disabled = false;
-    });
-</script>
 </body>
-
 </html>
-
