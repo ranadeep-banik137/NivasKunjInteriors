@@ -68,7 +68,7 @@ a {
     margin: 0 auto;
 }
 
-/* --- 1. Header & Navigation --- */
+/* --- 1. Header & Navigation (UPDATED FOR MOBILE) --- */
 .main-header {
     background: rgba(255, 255, 255, 0.98);
     padding: 15px 5%;
@@ -81,25 +81,32 @@ a {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
-.logo { display: flex; align-items: center; }
+.logo { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
 .logo-img { height: 40px; width: auto; display: block; }
 
 .company-name {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 1000; 
+    font-weight: 700; 
     color: var(--color-dark);
-    margin-left: 1px;
-    line-height: 0.5;
     letter-spacing: 0.1px;
-    position: relative;
-    top: 14px;
+    /* Fixed: Removed the top:14px and line-height:0.5 that caused mobile misalignment */
+}
+
+nav {
+    display: flex;
+    align-items: center;
 }
 
 .nav-link {
     margin-left: 30px;
     font-weight: 500;
     position: relative;
+    white-space: nowrap;
 }
 .nav-link:hover { color: var(--color-primary); }
 .nav-link::after {
@@ -350,7 +357,7 @@ a {
 }
 .submit-btn:hover { background-color: var(--color-primary); }
 
-/* --- 6.5 Success Message (NEW ADDITION) --- */
+/* --- 6.5 Success Message --- */
 .form-success-container {
     text-align: center;
     padding: 40px 10px;
@@ -393,16 +400,49 @@ a {
 /* --- 7. Footer --- */
 footer { text-align: center; padding: 30px; background-color: var(--color-dark); color: #bbb; }
 
-/* --- Responsive Adjustments --- */
+/* --- Responsive Adjustments (UPDATED) --- */
 @media (max-width: 1000px) {
-    .staggered-heading { font-size: 4rem; }
+    .staggered-heading { font-size: 3.5rem; }
     .projects-grid-section, .about-content, .contact-box { grid-template-columns: 1fr; }
     .section-intro-vertical { border-right: none; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
     .style-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 600px) {
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5%;
+        text-align: center;
+    }
+    
+    .logo { justify-content: center; }
+    
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-link {
+        margin: 0 5px;
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        margin-left: 5px;
+        padding: 6px 15px;
+    }
+
     .staggered-heading { font-size: 2.5rem; }
+}
+
+@media (max-width: 600px) {
     .style-grid { grid-template-columns: 1fr; }
-    .main-header { flex-direction: column; gap: 10px; }
-    .main-header nav { width: 100%; display: flex; justify-content: space-between; }
+}
+
+@media (max-width: 400px) {
+    .company-name { font-size: 1rem; }
+    .nav-link { font-size: 0.8rem; }
 }
