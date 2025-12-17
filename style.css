@@ -448,3 +448,13 @@ footer { text-align: center; padding: 30px; background-color: var(--color-dark);
     .company-name { font-size: 1rem; }
     .nav-link { font-size: 0.8rem; }
 }
+
+.whatsapp-consent label {
+    line-height: 1.4;
+    user-select: none;
+}
+
+#whatsapp_consent {
+    accent-color: var(--color-primary); /* Makes the checkbox match your gold theme */
+    transform: scale(1.1);
+}
