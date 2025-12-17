@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -224,7 +225,7 @@
             <div class="contact-form-side">
                 <p class="section-description">Let’s discuss your project vision. Fill out the form below to begin.</p>
                 
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" id="contactForm" action="#" method="POST">
                     <input type="text" name="name" placeholder="Your Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
                     <textarea name="message" placeholder="Your Project Brief/Query" rows="4" required></textarea>
@@ -391,7 +392,50 @@
             startHeroSlider(); // Start the hero slideshow
         });
     </script>
+    <script>
+    // 1. Initialize Supabase (Replace with your actual keys)
+    const SUPABASE_URL = 'https://wbhcvcsdpdandaxidnlg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiaGN2Y3NkcGRhbmRheGlkbmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5NjMwMjksImV4cCI6MjA4MTUzOTAyOX0.n8R1OpFxilWbDfteODc-lyVF_qvntyRnJNVM3g9xCWs';
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // 2. Handle Form Submission
+    const contactForm = document.getElementById('contactForm'); // Make sure your <form> has id="contactForm"
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Change button state to show progress
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+
+        // Get form data
+        const formData = new FormData(contactForm);
+        const submission = {
+            customer_name: formData.get('name'),
+            email_id: formData.get('email'),
+            query_data: formData.get('message')
+        };
+
+        // 3. Insert into Supabase
+        const { data, error } = await _supabase
+            .from('raw_enquiries')
+            .insert([submission]);
+
+        if (error) {
+            console.error('Supabase Error:', error);
+            alert('Something went wrong. Please try again.');
+        } else {
+            alert('Enquiry sent successfully!');
+            contactForm.reset();
+        }
+
+        // Reset button
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+    });
+</script>
 </body>
 
 </html>
