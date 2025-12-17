@@ -189,7 +189,15 @@
                 <form class="contact-form" id="contactForm">
                     <input type="text" name="name" placeholder="Your Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="phone" name="phone" placeholder="Phone Number" required>
                     <textarea name="message" placeholder="Your Project Brief/Query" rows="4" required></textarea>
+                    
+                    <div class="whatsapp-consent" style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
+    <input type="checkbox" name="whatsapp_consent" id="whatsapp_consent" style="width: auto; margin-top: 5px; cursor: pointer;">
+    <label for="whatsapp_consent" style="font-size: 0.9rem; color: #555; cursor: pointer;">
+        I would like to receive project updates and design inspiration via WhatsApp.
+    </label>
+</div>
                     <button type="submit" class="submit-btn">Send Inquiry</button>
                 </form>
 
@@ -339,7 +347,9 @@
             const submission = {
                 customer_name: formData.get('name'),
                 email_id: formData.get('email'),
-                query_data: formData.get('message')
+                query_data: formData.get('message'),
+                phone_number: formData.get('phone'),
+                whatsapp_updates: formData.get('whatsapp_consent') === 'on'
             };
 
             const { data, error } = await _supabase.from('raw_enquiries').insert([submission]);
