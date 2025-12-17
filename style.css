@@ -68,7 +68,6 @@ a {
     margin: 0 auto;
 }
 
-
 /* --- 1. Header & Navigation --- */
 .main-header {
     background: rgba(255, 255, 255, 0.98);
@@ -82,25 +81,16 @@ a {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
-.logo {
-    display: flex; 
-    align-items: center;
-}
+.logo { display: flex; align-items: center; }
+.logo-img { height: 40px; width: auto; display: block; }
 
-.logo-img {
-    height: 40px; 
-    width: auto; 
-    display: block; 
-}
-
-/* ADDED: Company Name Styling */
 .company-name {
-    font-family: var(--font-heading); /* Cormorant Garamond */
+    font-family: var(--font-heading);
     font-size: 1.2rem;
     font-weight: 1000; 
     color: var(--color-dark);
     margin-left: 1px;
-    line-height: 0.5; /* Aligns text vertically better with the image */
+    line-height: 0.5;
     letter-spacing: 0.1px;
     position: relative;
     top: 14px;
@@ -111,9 +101,7 @@ a {
     font-weight: 500;
     position: relative;
 }
-.nav-link:hover {
-    color: var(--color-primary);
-}
+.nav-link:hover { color: var(--color-primary); }
 .nav-link::after {
     content: '';
     position: absolute;
@@ -124,9 +112,7 @@ a {
     background: var(--color-primary);
     transition: width var(--transition-speed) ease-in-out;
 }
-.nav-link:hover::after {
-    width: 100%;
-}
+.nav-link:hover::after { width: 100%; }
 
 .cta-button {
     background-color: var(--color-primary);
@@ -140,10 +126,8 @@ a {
     background-color: #DAA520; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.cta-button::after { content: none; }
 
-
-/* --- 2. Hero Section (SLIDER - NOW CROSSFADE) --- */
+/* --- 2. Hero Section --- */
 .hero-section {
     min-height: 90vh;
     display: block; 
@@ -152,77 +136,44 @@ a {
     position: relative; 
     overflow: hidden; 
 }
-
-/* Slider Container to hold the moving track */
 .hero-slider-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 1; 
 }
+.hero-slider-track { position: relative; width: 100%; height: 100%; }
 
-/* Track is now a simple container, no more transform property */
-.hero-slider-track {
-    position: relative; /* Container for absolute slides */
-    width: 100%;
-    height: 100%;
-}
-
-/* Individual Slide Styling - NOW ABSOLUTELY POSITIONED AND OPACITY CONTROLLED */
 .hero-slide {
-    width: 100%; /* Fill the container */
-    height: 100%;
-    position: absolute; /* Stack slides on top of each other */
-    top: 0;
-    left: 0;
-    background-color: var(--color-dark); /* Failsafe dark background */
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background-color: var(--color-dark);
     background-size: cover;
     background-position: center;
-    
-    /* NEW: Opacity Transition */
     opacity: 0; 
-    transition: opacity 1.2s ease-in-out; /* 1.2s for a slow, smooth crossfade */
-    
-    /* Ensure only the active slide is visible */
+    transition: opacity 1.2s ease-in-out;
     z-index: 5;
-    pointer-events: none; /* Prevents hidden slides from blocking clicks */
+    pointer-events: none;
 }
-
-.hero-slide.active {
-    opacity: 1;
-    z-index: 10;
-    pointer-events: auto;
-}
-
-
-/* Internal Overlay for text contrast */
+.hero-slide.active { opacity: 1; z-index: 10; pointer-events: auto; }
 .hero-slide::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.4); 
 }
 
-/* Content Overlay (Fixed over the slides) */
 .hero-content {
     position: absolute; 
-    top: 50%; 
-    left: 50%; 
+    top: 50%; left: 50%; 
     transform: translate(-50%, -50%); 
     z-index: 50; 
     max-width: 900px;
     width: 90%; 
-    padding: 0; 
-    margin: 0;
     transition: opacity 0.5s ease-in-out;
 }
-
-/* Text styles updated for better visibility on dark backgrounds */
 .staggered-heading {
     font-size: 5.5rem;
     font-weight: 300;
@@ -230,9 +181,7 @@ a {
     color: white; 
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
-.staggered-heading span {
-    display: block; 
-}
+.staggered-heading span { display: block; }
 .staggered-heading span:nth-child(2) {
     color: var(--color-primary);
     font-weight: 600;
@@ -242,25 +191,19 @@ a {
     font-size: 1.25rem;
     font-family: var(--font-heading);
     margin-bottom: 40px;
-    font-weight: 300;
     color: white;
 }
-
 .hero-cta {
     display: inline-block;
     padding: 12px 30px;
     background-color: var(--color-dark);
     color: white;
-    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: 4px;
 }
-.hero-cta:hover {
-    background-color: var(--color-primary);
-}
+.hero-cta:hover { background-color: var(--color-primary); }
 
-/* Hero Slider Navigation (Arrows) */
 .hero-arrow {
     position: absolute;
     top: 50%;
@@ -268,49 +211,32 @@ a {
     background-color: rgba(255, 255, 255, 0.15);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    width: 50px;
-    height: 50px;
+    width: 50px; height: 50px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 60;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-.hero-arrow:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
 }
 .hero-arrow.left { left: 40px; }
 .hero-arrow.right { right: 40px; }
 
-/* Hero Slider Navigation (Dots) */
 .hero-slider-dots {
     position: absolute;
-    bottom: 40px; 
-    left: 50%;
+    bottom: 40px; left: 50%;
     transform: translateX(-50%); 
     z-index: 60;
-    display: flex;
-    gap: 10px;
+    display: flex; gap: 10px;
 }
-.hero-slider-dots .dot {
-    display: block;
-    width: 10px;
-    height: 10px;
+.dot {
+    width: 10px; height: 10px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
 }
-.hero-slider-dots .dot.active {
-    background-color: var(--color-primary);
-    transform: scale(1.2);
-}
+.dot.active { background-color: var(--color-primary); transform: scale(1.2); }
 
-/* Scroll Indicator (FIXED: Moved lower to avoid overlap) */
 .hero-scroll-indicator {
     position: absolute;
-    bottom: 70px; 
-    left: 50%;
+    bottom: 70px; left: 50%;
     transform: translateX(-50%);
     z-index: 50;
     font-size: 0.8rem;
@@ -318,420 +244,165 @@ a {
     letter-spacing: 2px;
 }
 
-
-/* --- 3. Projects Section (Layout is now restored) --- */
+/* --- 3. Projects Section --- */
 .projects-grid-section {
     display: grid;
     grid-template-columns: 0.8fr 3fr; 
     gap: 40px;
     background-color: var(--color-light-bg);
 }
-
-.section-intro-vertical {
-    border-right: 1px solid #ddd;
-    padding-right: 40px;
-}
-.section-intro-vertical .section-title {
-    margin-bottom: 10px;
-}
-
+.section-intro-vertical { border-right: 1px solid #ddd; padding-right: 40px; }
 .project-container {
     display: grid;
     grid-template-columns: 2fr 1fr; 
     grid-template-rows: 1fr 1fr;
     gap: 30px;
 }
-
 .project-card {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
-.project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease-out;
-}
-.large-card {
-    grid-row: span 2; 
-}
-
+.project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease-out; }
+.large-card { grid-row: span 2; }
 .project-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     padding: 30px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
     color: white;
     transform: translateY(100%); 
     transition: transform 0.4s ease-out;
 }
-.project-card:hover .project-overlay {
-    transform: translateY(0); 
-}
-.project-card:hover img {
-    transform: scale(1.03); 
-}
-.project-overlay h3 {
-    color: white;
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
-.view-project-link {
-    color: var(--color-primary);
-    font-weight: 600;
-    display: inline-block;
-    margin-top: 10px;
-}
-.view-project-link:hover {
-    color: white;
-}
+.project-card:hover .project-overlay { transform: translateY(0); }
+.project-card:hover img { transform: scale(1.03); }
+.view-project-link { color: var(--color-primary); font-weight: 600; margin-top: 10px; }
 
 .cta-card {
     background-color: var(--color-primary);
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-}
-.cta-card h3 {
-    color: white;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 30px;
 }
 .cta-link {
-    color: white;
-    border: 1px solid white;
-    padding: 10px 20px;
-    border-radius: 4px;
+    color: white; border: 1px solid white;
+    padding: 10px 20px; border-radius: 4px;
     margin-top: 15px;
-    font-weight: 500;
-}
-.cta-link:hover {
-    background-color: white;
-    color: var(--color-dark);
 }
 
-
-/* --- 4. Designs Section (Carousel) --- */
-.designs-gallery-section {
-    background-color: var(--color-secondary);
-}
-
-.design-carousel {
-    position: relative;
-    margin-top: 60px;
-    overflow: hidden;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.6s ease;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    padding: 0 40px;
-}
-
-.design-style-header { 
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 600; 
-    margin-bottom: 25px;
-    color: var(--color-dark);
-}
-
-.style-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.design-image-wrapper {
-    position: relative; 
-    overflow: hidden;
-    border-radius: 8px;
-    cursor: pointer; 
-}
-
-.style-grid img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.4s ease;
-    display: block;
-}
-
-.design-image-wrapper:hover img {
-    transform: scale(1.05);
-}
-
+/* --- 4. Designs Section --- */
+.design-carousel { position: relative; margin-top: 60px; overflow: hidden; }
+.carousel-track { display: flex; transition: transform 0.6s ease; }
+.carousel-slide { min-width: 100%; padding: 0 40px; }
+.design-style-header { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 25px; }
+.style-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.design-image-wrapper { position: relative; overflow: hidden; border-radius: 8px; }
+.style-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; }
 .design-image-caption {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     background-color: rgba(32, 32, 32, 0.75); 
-    color: white;
-    padding: 10px 15px;
+    color: white; padding: 10px 15px;
     font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    opacity: 0;
     transform: translateY(100%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: 0.3s ease;
 }
-
-.design-image-wrapper:hover .design-image-caption {
-    opacity: 1;
-    transform: translateY(0);
-}
+.design-image-wrapper:hover .design-image-caption { transform: translateY(0); }
 
 .carousel-arrow {
-    position: absolute;
-    top: 45%;
+    position: absolute; top: 45%;
     background-color: rgba(32,32,32,0.85);
-    color: white;
-    border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    color: white; border: none;
+    width: 48px; height: 48px;
+    border-radius: 50%; z-index: 10;
     cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
 }
+.carousel-arrow.left { left: 0; }
+.carousel-arrow.right { right: 0; }
 
-.carousel-arrow:hover {
-    background-color: var(--color-primary);
-}
-
-.carousel-arrow.left {
-    left: 0;
-}
-
-.carousel-arrow.right {
-    right: 0;
-}
-
-/* --- 5. About Us Section --- */
-.about-philosophy-section {
-    background-color: var(--color-light-bg);
-}
-.about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 60px;
-    align-items: flex-start;
-}
-.about-text {
-    padding-right: 20px;
-}
-.tagline {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 25px;
-}
-.about-visual img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
+/* --- 5. About Us --- */
+.about-philosophy-section { background-color: var(--color-light-bg); }
+.about-content { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
+.tagline { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 25px; }
+.about-visual img { width: 100%; border-radius: 8px; }
 
 /* --- 6. Contact Section --- */
-.contact-form-section {
-    padding: 80px 5%;
-    background-color: var(--color-secondary);
-}
-
+.contact-form-section { background-color: var(--color-secondary); }
 .contact-box {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr; 
-    max-width: 1000px;
-    margin: 40px auto 0;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
+    display: grid; grid-template-columns: 1.5fr 1fr; 
+    max-width: 1000px; margin: 40px auto 0;
+    border: 1px solid #E0E0E0; border-radius: 8px;
     overflow: hidden;
 }
-
-.contact-form-side {
-    padding: 40px;
-    background-color: white;
+.contact-form-side { padding: 40px; background-color: white; }
+.contact-details-side { padding: 40px; background-color: var(--color-light-bg); }
+.contact-form input, .contact-form textarea {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    border: 1px solid #ddd; border-radius: 4px;
 }
-
-.contact-details-side {
-    padding: 40px;
-    background-color: var(--color-light-bg);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.submit-btn {
+    width: 100%; padding: 15px;
+    background-color: var(--color-dark);
+    color: white; border: none; border-radius: 4px;
+    text-transform: uppercase; cursor: pointer;
 }
-.contact-details-side h3 {
-    font-size: 1.6rem;
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: 10px;
+.submit-btn:hover { background-color: var(--color-primary); }
+
+/* --- 6.5 Success Message (NEW ADDITION) --- */
+.form-success-container {
+    text-align: center;
+    padding: 40px 10px;
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+.success-icon {
+    font-size: 4rem;
+    color: var(--color-primary);
     margin-bottom: 20px;
 }
-.contact-details-side i {
-    color: var(--color-primary);
-    margin-right: 10px;
-    width: 20px;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
+.success-title {
+    font-size: 2.2rem;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
+    color: var(--color-dark);
 }
-.contact-form input:focus, .contact-form textarea:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 5px rgba(184, 134, 11, 0.2);
-    outline: none;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--color-dark);
-    color: white;
-    border: none;
-    border-radius: 4px;
+.success-text {
     font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+.reset-form-btn {
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 12px 25px;
     cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
 }
-.submit-btn:hover {
-    background-color: var(--color-primary);
+.reset-form-btn:hover {
+    background: var(--color-primary);
+    color: white;
 }
-
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* --- 7. Footer --- */
-footer {
-    text-align: center;
-    padding: 30px;
-    background-color: var(--color-dark);
-    color: #bbb;
-    font-size: 0.85rem;
-    font-weight: 300;
-}
-
+footer { text-align: center; padding: 30px; background-color: var(--color-dark); color: #bbb; }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 1000px) {
-    .staggered-heading {
-        font-size: 4rem;
-    }
-    .hero-content {
-        padding: 0 20px;
-    }
-    .hero-arrow.left { left: 15px; }
-    .hero-arrow.right { right: 15px; }
-    
-    .projects-grid-section {
-        grid-template-columns: 1fr;
-    }
-    .project-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-    .large-card {
-        grid-row: span 1;
-    }
-    .about-content, .contact-box {
-        grid-template-columns: 1fr;
-    }
-    .section-intro-vertical {
-        border-right: none;
-        padding-right: 0;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-    }
-    .style-grid {
-        grid-template-columns: repeat(2, 1fr); 
-    }
-    
-    /* Make company name smaller on small screens */
-    .company-name {
-        font-size: 1.4rem; 
-    }
+    .staggered-heading { font-size: 4rem; }
+    .projects-grid-section, .about-content, .contact-box { grid-template-columns: 1fr; }
+    .section-intro-vertical { border-right: none; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+    .style-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-    .staggered-heading {
-        font-size: 2.5rem;
-    }
-    .hero-tagline {
-        font-size: 1rem;
-    }
-    .hero-scroll-indicator {
-        bottom: 60px; 
-    }
-    .style-grid {
-        grid-template-columns: 1fr; 
-    }
-    
-    /* FIX: Header Mobile Overlap Fixes (UPDATED) */
-    .main-header {
-        padding: 10px 5%;
-        flex-direction: column; /* Stack logo and nav vertically */
-        align-items: center; 
-        gap: 10px; 
-    }
-
-    .logo {
-        width: auto; /* Allow logo to size naturally */
-        justify-content: center; 
-        margin-bottom: 5px; 
-        padding-bottom: 5px; /* Add slight separation from nav */
-        border-bottom: 1px solid #eee; /* Visual separation */
-    }
-
-    .logo-img {
-        height: 35px; /* Slightly smaller logo */
-    }
-    
-    .company-name {
-        font-size: 1.4rem; /* Adjusted size */
-        top: 10px; /* Reduced vertical alignment for better centering */
-        margin-left: 5px; 
-    }
-
-    .main-header nav {
-        width: 100%; 
-        display: flex;
-        justify-content: space-between; /* Space out the links more */
-        padding: 5px 0;
-    }
-
-    .nav-link {
-        margin-left: 0; 
-        font-size: 0.85rem; /* Slightly larger for readability */
-        padding: 0 5px; /* Add padding to make links tappable */
-    }
-
-    .cta-button {
-        padding: 4px 8px; /* Slightly smaller button */
-        font-size: 0.8rem;
-        margin-left: 0;
-    }
-    /* END FIXES */
+    .staggered-heading { font-size: 2.5rem; }
+    .style-grid { grid-template-columns: 1fr; }
+    .main-header { flex-direction: column; gap: 10px; }
+    .main-header nav { width: 100%; display: flex; justify-content: space-between; }
 }
