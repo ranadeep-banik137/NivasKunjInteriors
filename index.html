@@ -184,30 +184,43 @@
         
         <div class="contact-box">
             <div class="contact-form-side">
-                <p class="section-description">Let’s discuss your project vision. Fill out the form below to begin.</p>
+                <div id="contact-choice-container">
+                    <p class="section-description">How can we help you today? Select an option to proceed.</p>
+                    <div class="choice-buttons">
+                        <button class="choice-btn" onclick="showForm('inquiry')">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>General Enquiry</span>
+                        </button>
+                        <a href="quote.html" class="choice-btn highlight">
+                            <i class="fas fa-calculator"></i>
+                            <span>Get a Design Quote</span>
+                        </a>
+                    </div>
+                </div>
                 
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" style="display: none;">
+                    <div style="margin-bottom: 15px; cursor: pointer; color: var(--color-primary);" onclick="showChoice()">
+                        <i class="fas fa-arrow-left"></i> Back to options
+                    </div>
                     <input type="text" name="name" placeholder="Your Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
                     <input type="phone" name="phone" placeholder="Phone Number" required>
                     <textarea name="message" placeholder="Your Project Brief/Query" rows="4" required></textarea>
                     
                     <div class="whatsapp-consent" style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
-    <input type="checkbox" name="whatsapp_consent" id="whatsapp_consent" style="width: auto; margin-top: 5px; cursor: pointer;">
-    <label for="whatsapp_consent" style="font-size: 0.9rem; color: #555; cursor: pointer;">
-        I would like to receive project updates and design inspiration via WhatsApp.
-    </label>
-</div>
+                        <input type="checkbox" name="whatsapp_consent" id="whatsapp_consent" style="width: auto; margin-top: 5px; cursor: pointer;">
+                        <label for="whatsapp_consent" style="font-size: 0.9rem; color: #555; cursor: pointer;">
+                            I would like to receive project updates and design inspiration via WhatsApp.
+                        </label>
+                    </div>
                     <button type="submit" class="submit-btn">Send Inquiry</button>
                 </form>
 
-                <div id="successMessage" class="form-success-container" style="display: none;">
-                    <div class="success-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3 class="success-title">Enquiry Received</h3>
-                    <p class="success-text">Thanks for contacting us. Your vision is important to us; our team will review your brief and get back to you shortly.</p>
-                    <button class="reset-form-btn" onclick="location.reload()">Send Another Message</button>
+                <div id="successMessage" style="display:none; text-align: center; padding: 40px 0;">
+                    <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--color-primary); margin-bottom: 20px;"></i>
+                    <h2>Enquiry Received</h2>
+                    <p>Thanks for contacting us. Your vision is important to us; our team will review your brief and get back to you shortly.</p>
+                    <button class="submit-btn" onclick="location.reload()" style="display:inline-block; margin-top:20px; width:auto; padding: 12px 30px;">Send Another Message</button>
                 </div>
             </div>
 
@@ -217,12 +230,12 @@
                 <p><i class="fas fa-phone-alt"></i> +91 8794183828</p>
                 <p><i class="fas fa-envelope"></i> info@nivaskunj.com</p>
                 
-                <div class="social-links-new">
-                    <a href="https://facebook.com/nivaskunjinteriors" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/nivaskunjinteriors" target="_blank"><i class="fab fa-instagram"></i></a>
+                <div class="social-links-new" style="display: flex; gap: 15px; margin-top: 20px;">
+                    <a href="https://facebook.com/nivaskunjinteriors" target="_blank" style="font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/nivaskunjinteriors" target="_blank" style="font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                 </div>
 
-                <a href="https://maps.app.goo.gl/3qCR6yz6ACeZHYAK6" target="_blank" class="map-link-btn">
+                <a href="https://maps.app.goo.gl/3qCR6yz6ACeZHYAK6" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 25px; font-weight: 600; color: var(--color-primary);">
                     View Location on Map <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -234,6 +247,18 @@
     </footer>
 
     <script>
+        // --- Choice Logic ---
+        function showForm(type) {
+            document.getElementById('contact-choice-container').style.display = 'none';
+            if(type === 'inquiry') {
+                document.getElementById('contactForm').style.display = 'block';
+            }
+        }
+        function showChoice() {
+            document.getElementById('contact-choice-container').style.display = 'block';
+            document.getElementById('contactForm').style.display = 'none';
+        }
+
         // --- 1. Design Carousel Logic ---
         function initializeDesignCaptions() {
             const imageWrappers = document.querySelectorAll('.design-image-wrapper');
@@ -329,7 +354,7 @@
             startHeroSlider();
         });
 
-        // --- 3. Supabase Form Submission (UPDATED) ---
+        // --- 3. Supabase Form Submission (MULTI-TABLE LOGIC) ---
         const SUPABASE_URL = 'https://wbhcvcsdpdandaxidnlg.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiaGN2Y3NkcGRhbmRheGlkbmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5NjMwMjksImV4cCI6MjA4MTUzOTAyOX0.n8R1OpFxilWbDfteODc-lyVF_qvntyRnJNVM3g9xCWs';
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -344,27 +369,46 @@
             submitBtn.disabled = true;
 
             const formData = new FormData(contactForm);
-            const submission = {
-                customer_name: formData.get('name'),
-                email_id: formData.get('email'),
-                query_data: formData.get('message'),
-                phone_number: formData.get('phone'),
-                whatsapp_updates: formData.get('whatsapp_consent') === 'on'
-            };
+            
+            // Step 1: Insert into raw_enquiries and get returned ID
+            const { data: enquiryData, error: enquiryError } = await _supabase
+                .from('raw_enquiries')
+                .insert([{ 
+                    query_data: formData.get('message'),
+                    is_quote: false 
+                }])
+                .select('id')
+                .single();
 
-            const { data, error } = await _supabase.from('raw_enquiries').insert([submission]);
-
-            if (error) {
-                console.error('Supabase Error:', error);
+            if (enquiryError) {
+                console.error('Enquiry Error:', enquiryError);
                 alert('Something went wrong. Please try again.');
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
-            } else {
-                // UI TOGGLE: Hide form, show success message
-                contactForm.style.display = 'none';
-                document.querySelector('.contact-form-side .section-description').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
+                return;
             }
+
+            const newId = enquiryData.id;
+
+            // Step 2: Insert into customer_details using the new ID
+            const { error: customerError } = await _supabase
+                .from('customer_details')
+                .insert([{
+                    enquiry_id: newId,
+                    customer_name: formData.get('name'),
+                    email_id: formData.get('email'),
+                    phone_number: formData.get('phone'),
+                    whatsapp_updates: formData.get('whatsapp_consent') === 'on'
+                }]);
+
+            if (customerError) {
+                console.error('Customer Details Error:', customerError);
+                alert('Data partially saved. Our team will contact you.');
+            }
+
+            // Step 3: UI Transition
+            contactForm.style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
         });
     </script>
 </body>
