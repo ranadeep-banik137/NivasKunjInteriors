@@ -274,6 +274,8 @@
 			<div class="step" id="step4"> <h2>Visual Reference (Optional)</h2>
 				<p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">
 					Upload photos of your space to help our designers understand the layout better.
+					<br>
+					<small style="color: #888;">Note: Supported formats: JPG, JPEG, PNG. Max file size: 10MB.</small>
 				</p>
 				
 				<div class="upload-container">
@@ -431,8 +433,23 @@
 		document.getElementById('fileInput').addEventListener('change', function(e) {
 			const previewContainer = document.getElementById('imagePreview');
 			const files = Array.from(e.target.files);
+			
+			// Define allowed extensions
+			const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.webp|\.heic)$/i;
 
 			files.forEach((file, index) => {
+			
+				// 1. Check File Extension
+				if (!allowedExtensions.exec(file.name)) {
+					alert(`Invalid file type: ${file.name}. Please upload images (JPG, PNG, etc).`);
+					return; // Skip this file
+				}
+				
+				// 2. Check File Size (10MB)
+				if (file.size > 10 * 1024 * 1024) {
+					alert(`File too large: ${file.name}. Maximum size allowed is 10MB.`);
+					return; // Skip this file
+				}
 				// Add to global array
 				const fileId = Date.now() + Math.random();
 				selectedFiles.push({ id: fileId, file: file });
