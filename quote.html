@@ -148,10 +148,11 @@
                         <label>Pincode</label>
                         <input type="text" name="pincode" placeholder="pincode" required>
                     </div>
-                    <div class="full-width">
-                        <label>Location/Landmark</label>
-                        <input type="text" name="location" placeholder="Address" required>
-                    </div>
+                    <div class="form-group full-width" style="position: relative;">
+						<label>Landmark / Exact Location</label>
+						<input type="text" name="location" id="landmarkInput" placeholder="Start typing a landmark..." autocomplete="off">
+						<div id="resultsContainer" class="autocomplete-results"></div>
+					</div>
                 </div>
             </div>
 
@@ -317,6 +318,40 @@
             }
             return true;
         }
+		
+		const landmarkInput = document.getElementById('landmarkInput');
+		const resultsContainer = document.getElementById('resultsContainer');
+
+		landmarkInput.addEventListener('input', async (e) => {
+			const query = e.target.value;
+			if (query.length < 3) {
+				resultsContainer.innerHTML = '';
+				return;
+			}
+
+			// Fetch from Photon Open API (Privacy-friendly)
+			const response = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`);
+			const data = await response.json();
+
+			resultsContainer.innerHTML = '';
+			data.features.forEach(feature => {
+				const div = document.createElement('div');
+				div.className = 'result-item';
+				const name = feature.properties.name || '';
+				const city = feature.properties.city || '';
+				div.innerText = `${name}${city ? ', ' + city : ''}`;
+
+				div.onclick = () => {
+					landmarkInput.value = div.innerText;
+					resultsContainer.innerHTML = '';
+					// Optional: Auto-fill city if Photon provides it
+					if (feature.properties.city) {
+						document.querySelector('input[name="city"]').value = feature.properties.city;
+					}
+				};
+				resultsContainer.appendChild(div);
+			});
+		});
 
         async function submitQuote() {
 			// Show the professional loader
