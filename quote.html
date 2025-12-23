@@ -85,6 +85,57 @@
 				margin-top: 10px;
 			}
 		}
+		/* Image Upload Styling */
+		.upload-box {
+			border: 2px dashed #B8860B;
+			background: #FFFEFA;
+			padding: 30px;
+			text-align: center;
+			border-radius: 8px;
+			cursor: pointer;
+			display: block;
+		}
+		.image-preview-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+			gap: 12px;
+			margin-top: 20px;
+		}
+		.preview-item {
+			position: relative;
+			height: 90px;
+		}
+		.preview-item img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 6px;
+			border: 1px solid #ddd;
+		}
+		.remove-img-btn {
+			position: absolute;
+			top: -5px;
+			right: -5px;
+			background: #ff4d4d;
+			color: white;
+			border: none;
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			cursor: pointer;
+			font-size: 14px;
+			line-height: 18px;
+		}
+
+		/* Mobile Fixes */
+		@media (max-width: 600px) {
+			.image-preview-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			.upload-box {
+				padding: 20px;
+			}
+		}
     </style>
 </head>
 <body style="background-color: var(--color-light-bg);">
@@ -219,8 +270,23 @@
                     </div>
                 </div>
             </div>
-
-            <div class="step" id="step4">
+			
+			<div class="step" id="step4"> <h2>Visual Reference (Optional)</h2>
+				<p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">
+					Upload photos of your space to help our designers understand the layout better.
+				</p>
+				
+				<div class="upload-container">
+					<label for="fileInput" class="upload-box" id="dropZone">
+						<i class="fas fa-camera" style="font-size: 2rem; color: var(--color-primary); margin-bottom: 10px;"></i>
+						<p>Tap to upload or drag photos here</p>
+						<input type="file" id="fileInput" multiple accept="image/*" style="display:none">
+					</label>
+					<div id="imagePreview" class="image-preview-grid"></div>
+				</div>
+			</div>
+			
+            <div class="step" id="step5">
                 <h2 class="section-title">Final Step: Choose Package</h2>
                 <div class="package-grid">
                     <div class="package-card" onclick="selectPackage('Basic', this)">
@@ -272,7 +338,7 @@
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let currentStep = 1;
-        const totalSteps = 4;
+        const totalSteps = 5;
         const roomData = { bedroom: 1, living: 1, kitchen: 1, washroom: 1, puja: 0, balcony: 0, dining: 0 };
 
         function updateQty(room, delta) {
@@ -305,19 +371,20 @@
         }
 
         function validateStep() {
-            const inputs = document.getElementById(`step${currentStep}`).querySelectorAll('input[required], select[required]');
-            for (let input of inputs) {
-                if (!input.value) {
-                    alert('Please fill all required fields');
-                    return false;
-                }
-            }
-            if(currentStep === 4 && !document.getElementById('selected_package').value) {
-                alert('Please select a design package');
-                return false;
-            }
-            return true;
-        }
+			const inputs = document.getElementById(`step${currentStep}`).querySelectorAll('input[required], select[required]');
+			for (let input of inputs) {
+				if (!input.value) {
+					alert('Please fill all required fields');
+					return false;
+				}
+			}
+			// Update this to step 5
+			if(currentStep === 5 && !document.getElementById('selected_package').value) {
+				alert('Please select a design package');
+				return false;
+			}
+			return true;
+		}
 		
 		const landmarkInput = document.getElementById('landmarkInput');
 		const resultsContainer = document.getElementById('resultsContainer');
@@ -352,77 +419,125 @@
 				resultsContainer.appendChild(div);
 			});
 		});
+		
+		let selectedFiles = []; // Global array to track files
 
-        async function submitQuote() {
-			// Show the professional loader
+		// --- Image Preview & Delete Logic ---
+		document.getElementById('fileInput').addEventListener('change', function(e) {
+			const previewContainer = document.getElementById('imagePreview');
+			const files = Array.from(e.target.files);
+
+			files.forEach((file, index) => {
+				// Add to global array
+				const fileId = Date.now() + Math.random();
+				selectedFiles.push({ id: fileId, file: file });
+
+				const reader = new FileReader();
+				reader.onload = (event) => {
+					const div = document.createElement('div');
+					div.className = 'preview-item';
+					div.setAttribute('data-id', fileId);
+					div.innerHTML = `
+						<img src="${event.target.result}">
+						<button type="button" class="remove-img-btn" onclick="removeImage(${fileId})">&times;</button>
+					`;
+					previewContainer.appendChild(div);
+				};
+				reader.readAsDataURL(file);
+			});
+		});
+
+		function removeImage(fileId) {
+			// Remove from array
+			selectedFiles = selectedFiles.filter(item => item.id !== fileId);
+			// Remove from UI
+			const element = document.querySelector(`.preview-item[data-id="${fileId}"]`);
+			if (element) element.remove();
+		}
+
+        // --- Updated Submission Logic ---
+		async function submitQuote() {
 			const loader = document.getElementById('loaderOverlay');
 			loader.style.display = 'flex';
-			
+
 			const form = document.getElementById('quoteForm');
 			const formData = new FormData(form);
 			const nextBtn = document.getElementById('nextBtn');
-			
-			nextBtn.innerText = 'Processing...';
 			nextBtn.disabled = true;
 
 			try {
-				// Step 1: Insert into raw_enquiries
+				// 1. Insert Main Enquiry
 				const { data: enquiryData, error: enquiryError } = await _supabase
 					.from('raw_enquiries')
 					.insert([{ 
 						query_data: `Quote Request for ${formData.get('flat_type')}`,
 						is_quote: true 
 					}])
-					.select('id')
-					.single();
+					.select('id').single();
 
 				if (enquiryError) throw enquiryError;
-
 				const newId = enquiryData.id;
 
-				// Step 2 & 3: Run parallel inserts for speed
-				const [customerRes, quoteRes] = await Promise.all([
-					_supabase.from('customer_details').insert([{
-						enquiry_id: newId,
-						customer_name: formData.get('name'),
-						email_id: formData.get('email'),
-						phone_number: formData.get('phone'),
-						whatsapp_updates: formData.get('whatsapp_consent') === 'on'
-					}]),
-					_supabase.from('quote_details').insert([{
-						enquiry_id: newId,
-						flat_type: formData.get('flat_type'),
-						area_sqft: parseFloat(formData.get('area')),
-						city: formData.get('city'),
-						pincode: formData.get('pincode'),
-						landmark: formData.get('location'),
-						bedrooms: roomData.bedroom,
-						living_rooms: roomData.living,
-						kitchens: roomData.kitchen,
-						washrooms: roomData.washroom,
-						puja_ghar: roomData.puja,
-						dining: roomData.dining,
-						balcony: roomData.balcony,
-						package: formData.get('selected_package')
-					}])
-				]);
+				// 2. Insert Details (Broken out to catch specific table errors)
+				const { error: custError } = await _supabase.from('customer_details').insert([{
+					enquiry_id: newId,
+					customer_name: formData.get('name'),
+					email_id: formData.get('email'),
+					phone_number: formData.get('phone')
+				}]);
+				if (custError) throw custError;
 
-				if (customerRes.error) throw customerRes.error;
-				if (quoteRes.error) throw quoteRes.error;
+				const { error: quoteError } = await _supabase.from('quote_details').insert([{
+					enquiry_id: newId,
+					flat_type: formData.get('flat_type'),
+					area_sqft: parseFloat(formData.get('area')),
+					landmark: formData.get('location') || 'Not Specified',
+					bedrooms: roomData.bedroom,
+					living_rooms: roomData.living,
+					kitchens: roomData.kitchen,
+					washrooms: roomData.washroom,
+					puja_ghar: roomData.puja,
+					dining: roomData.dining,
+					balcony: roomData.balcony,
+					package: formData.get('selected_package') // Now works with the HTML fix
+				}]);
+				if (quoteError) throw quoteError;
 
-				// SUCCESS: Hide loader and show success message
+				// 3. IMAGE UPLOAD LOOP
+				if (selectedFiles.length > 0) {
+					for (const item of selectedFiles) {
+						const file = item.file;
+						const fileExt = file.name.split('.').pop();
+						const filePath = `${newId}/${Date.now()}-${Math.random().toString(36).substr(2, 5)}.${fileExt}`;
+
+						const { error: uploadError } = await _supabase.storage
+							.from('flat-images')
+							.upload(filePath, file);
+
+						if (!uploadError) {
+							const { data: urlData } = _supabase.storage
+								.from('flat-images')
+								.getPublicUrl(filePath);
+
+							await _supabase.from('quote_images').insert([{
+								enquiry_id: newId,
+								image_url: urlData.publicUrl
+							}]);
+						} else {
+							console.error("Upload error:", uploadError);
+						}
+					}
+				}
+
 				loader.style.display = 'none';
 				form.style.display = 'none';
 				document.querySelector('.progress-bar').style.display = 'none';
 				document.getElementById('quoteSuccess').style.display = 'block';
 
 			} catch (error) {
-				console.error('Submission Error:', error);
-				alert('Something went wrong. Please check your connection and try again.');
-				
-				// Reset UI so user can try again
+				console.error('Final Failure:', error);
 				loader.style.display = 'none';
-				nextBtn.innerText = 'Get My Quote';
+				alert('Error: ' + error.message);
 				nextBtn.disabled = false;
 			}
 		}
