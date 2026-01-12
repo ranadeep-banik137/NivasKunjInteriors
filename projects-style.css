@@ -206,53 +206,129 @@
     transform: scale(1.08);
 }
 /* --- 7. NEW PROFESSIONAL SITE-MAP FOOTER --- */
-.professional-footer { background: #111; color: #888; padding: 35px 2% 20px; }
-.footer-top { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; max-width: 1400px; margin: 0 auto; }
-.footer-brand-info h3 { color: white; margin: 20px 0 10px; font-family: var(--font-heading); font-size: 1.8rem; }
+/* --- 7. REFINED SITE-MAP FOOTER WITH SEPARATORS --- */
+.professional-footer { 
+    background: #111; 
+    color: #888; 
+    padding: 60px 5% 20px; 
+}
+
+.footer-top { 
+    display: flex; 
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+.footer-brand-info {
+    flex: 0 1 300px; 
+    padding-right: 40px;
+    /* This adds a separator after the Brand Info section */
+    border-right: 1px solid #222; 
+}
+
+.footer-brand-info h3 { 
+    color: white; 
+    margin: 20px 0 10px; 
+    font-family: var(--font-heading); 
+    font-size: 1.8rem; 
+}
+
 .f-logo { height: 60px; filter: brightness(1.2); }
 
-.footer-links-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.f-group h4 { color: white; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
-.f-group a { display: block; color: #666; margin-bottom: 12px; font-size: 0.95rem; transition: 0.3s; }
-.f-group a:hover { color: var(--color-primary); transform: translateX(5px); }
+/* Updated to Flex to ensure vertical borders are visible and equal height */
+.footer-links-grid { 
+    display: flex; 
+    flex: 1;
+    justify-content: space-between;
+}
 
-.footer-bottom { margin-top: 20px; padding-top: 20px; border-top: 1px solid #222; text-align: center; font-size: 0.85rem; }
+.f-group {
+    padding: 0 40px;
+    flex: 1;
+    /* This adds the thin vertical row separators you requested */
+    border-right: 1px solid #222; 
+}
 
-/* --- Mobile Footer Optimization --- */
-@media (max-width: 768px) {
+/* Removes the extra border from the very last column (Connect) */
+.f-group:last-child {
+    border-right: none;
+}
+
+.f-group h4 { 
+    color: white; 
+    font-size: 0.85rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 25px; 
+}
+
+.f-group a { 
+    display: block; 
+    color: #666; 
+    margin-bottom: 12px; 
+    font-size: 0.95rem; 
+    transition: 0.3s; 
+}
+
+.f-group a:hover { 
+    color: var(--color-primary); 
+    transform: translateX(5px); 
+}
+
+.footer-bottom { 
+    margin-top: 40px; 
+    padding-top: 20px; 
+    border-top: 1px solid #222; 
+    text-align: center; 
+    font-size: 0.85rem; 
+}
+
+/* --- Mobile Footer Optimization (FIXED CENTER ALIGNMENT) --- */
+@media (max-width: 900px) {
     .footer-top {
-        grid-template-columns: 1fr; /* Stack the brand info and links */
-        gap: 40px;
+        flex-direction: column;
+        align-items: center; /* Centers the brand and the links grid */
         text-align: center;
     }
 
     .footer-brand-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex: none;
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 40px;
+        border-right: none;
+        border-bottom: 1px solid #222; /* Horizontal separator after brand info */
+        margin-bottom: 40px;
+        text-align: center; /* Forces brand text/logo to center */
     }
 
     .footer-links-grid {
-        grid-template-columns: 1fr; /* Stack each link group */
-        gap: 30px;
-    }
-
-    .f-group h4 {
-        margin-bottom: 15px;
-        border-bottom: 1px solid #333;
-        padding-bottom: 10px;
-        display: inline-block;
+        flex-direction: column;
         width: 100%;
     }
 
-    .f-group a {
-        margin-bottom: 15px; /* Larger vertical gap for easier tapping */
-        font-size: 1rem;
+    .f-group {
+        padding: 0 0 30px 0;
+        border-right: none;
+        border-bottom: 1px solid #222; /* Horizontal separator for each column */
+        margin-bottom: 30px;
+        text-align: center; /* Forces links and headings to center */
     }
 
-    .footer-bottom {
-        padding-bottom: 40px; /* Extra space for mobile browser bars */
+    .f-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
     }
+}
+
+@media (max-width: 480px) {
+    .style-grid { grid-template-columns: 1fr; }
+    .staggered-heading { font-size: 2rem; }
+    nav { flex-wrap: wrap; gap: 10px; }
+    .nav-link { margin: 5px; }
 }
 /* Responsive */
 @media (max-width: 900px) {
