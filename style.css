@@ -48,11 +48,23 @@ a {
     color: var(--color-primary);
     letter-spacing: 3px;
     text-transform: uppercase;
+	margin-bottom: 45px;
 }
 .section-description {
     font-size: 1.05rem;
     color: #555;
     font-family: var(--font-body);
+	margin-bottom: 10px;
+}
+.section-description2 {
+    font-size: 0.90rem;
+    color: #625;
+	font-family: 'Bodoni Moda', serif;
+    /*font-family: var(--font-body);*/
+	margin-top: 25px;
+	font-weight: 500;
+	font-style: italic;
+	line-height: 1.8;
 }
 .centered-title, .centered-description {
     text-align: center;
@@ -325,9 +337,40 @@ nav { display: flex; align-items: center; }
     box-shadow: 0 25px 50px rgba(184, 134, 11, 0.1);
 }
 
+/* Target the h3 inside the leader-titles container */
+.leader-titles h3::after {
+    content: ""; /* Necessary to render the pseudo-element */
+    display: block; /* Ensures it sits on its own line */
+    width: 220px; /* Adjust the width of your separator */
+    height: 1.5px; /* Adjust the thickness */
+    background-color: #d4af37; /* Use your brand color (e.g., gold) */
+    margin: 5px 0; /* Adds spacing above and below the line */
+    border-radius: 2px;
+}
+
+/* Center the separator for the first leader (Standard layout) */
+.leader-visual .leader-titles h3::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Optional: If your 'reverse' row centers text, center the line too */
+.leader-row.reverse .leader-titles {
+    text-align: center;
+}
+
+.leader-row.reverse .leader-titles h3::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .remark-box p {
     font-size: 1.2rem; /* Slightly smaller for compactness */
     margin-bottom: 10px;
+	font-family: 'Bodoni Moda', serif;
+	font-weight: 500;
+	font-style: italic;
+	color: #625;
 }
 
 .remark-box .creds {
