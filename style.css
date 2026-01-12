@@ -1013,8 +1013,8 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
 /* --- Floating WhatsApp Button Styling --- */
 .whatsapp-float {
     position: fixed;
-    bottom: 90px; /* Positioned slightly above the Crisp widget */
-    right: 20px;
+    bottom: 75px; /* Positioned slightly above the Crisp widget */
+    right: 12px;
     background-color: #25d366;
     color: white;
     width: 60px;
