@@ -205,58 +205,176 @@ nav { display: flex; align-items: center; }
 .about-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; }
 .tagline { font-size: 2rem; color: var(--color-primary); margin: 20px 0; }
 .about-visual img { width: 100%; border-radius: 8px; }
-/* --- Leadership Grid --- */
-.leadership-section {
-    margin-top: 80px;
+/* =========================================
+   REFINED LEADERSHIP: GLASSMORPHISM THEME
+   ========================================= */
+
+.leadership-section-wrapper {
+    padding-top: 100px; /* Shifts header down away from Philosophy */
+    padding-bottom: 80px;
+    background-color: var(--color-secondary);
 }
-.leadership-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
-}
-.leader-card {
+
+.leadership-title-container {
     text-align: center;
-    transition: transform var(--transition-speed);
+    margin-bottom: 80px;
 }
-.leader-card:hover {
-    transform: translateY(-5px);
+
+.title-accent-line {
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 15px auto 0;
 }
-.leader-img-wrapper {
-    width: 100%;
-    height: 400px;
+
+.leadership-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Dramatically reduced gap */
+}
+
+.leader-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 0; /* Minimal vertical padding */
+}
+
+.leader-row.reverse {
+    flex-direction: row-reverse; /* Keeps DP on Right for 2nd row */
+}
+
+/* Photo & Title Group */
+.leader-visual {
+    flex: 0 0 250px;
+    text-align: center;
+}
+
+.leader-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px 0;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.sep-line {
+    height: 2px; /* Thicker line */
+    background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+    flex: 1;
+}
+
+.sep-icon {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(184, 134, 11, 0.4)); /* Subtle glow */
+    opacity: 1; /* Full visibility */
+}
+
+.leader-separator i {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    transform: rotate(45deg); /* Turns square into diamond */
+}
+
+/* Optional: Slight adjustment to row padding for better balance */
+.leader-row {
+    padding: 20px 0;
+}
+
+.circular-dp {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
     overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    background-color: #eee;
+    margin: 0 auto 20px;
+    border: 3px solid #fff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
 }
-.leader-img-wrapper img {
+
+.circular-dp img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.5s ease;
 }
-.leader-card:hover img {
-    filter: grayscale(0%);
+
+.leader-visual:hover .circular-dp {
+    transform: scale(1.03);
+    border-color: var(--color-primary);
 }
-.leader-name {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
+
+.leader-titles h3 {
+    font-size: 1.8rem;
     margin-bottom: 5px;
 }
-.leader-title {
+
+/* ATTRACTIVE: Glassmorphism Remark Theme */
+.remark-box.glass-effect {
+    padding: 30px 40px; /* Reduced internal padding to shrink the box height */
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.remark-box.glass-effect:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 25px 50px rgba(184, 134, 11, 0.1);
+}
+
+.remark-box p {
+    font-size: 1.2rem; /* Slightly smaller for compactness */
+    margin-bottom: 10px;
+}
+
+.remark-box .creds {
+    font-size: 0.8rem;
     color: var(--color-primary);
-    font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
-.leader-creds {
-    font-size: 0.9rem;
-    color: #777;
-    font-family: var(--font-body);
+
+/* Refined Pointer Arrows */
+.remark-box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+.right-pointing::before {
+    left: -10px;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.left-pointing::before {
+    right: -10px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+	.leadership-container {
+        gap: 40px;
+    }
+    .leader-separator {
+        padding: 10px 0;
+    }
+    .leader-row, .leader-row.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .remark-box::before {
+        display: none;
+    }
 }
 /* =========================================
    UPDATED: CONTACT SECTION RE-DESIGN (FIXED)
