@@ -202,64 +202,102 @@
         </div>
     </section>
 
+    <section id="quote-cta" class="quote-banner-section">
+        <div class="quote-banner-overlay"></div>
+        <div class="quote-banner-content">
+            <h2 class="quote-title">Visualise Your Investment</h2>
+            <p class="quote-subtitle">Get a preliminary cost estimate for your dream home in minutes. tailored to Agartala's market rates.</p>
+            <div class="quote-action-wrapper">
+                <a href="quote.html" class="glass-button">
+                    <i class="fas fa-calculator"></i> Calculate Design Cost
+                </a>
+                <span class="quote-note">Free instant estimation</span>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="content-section contact-form-section">
         <h2 class="section-title centered-title">04 | Start a Conversation</h2>
+        <p class="section-description centered-description" style="margin-bottom: 50px;">
+            For general queries, collaborations, or press.
+        </p>
         
-        <div class="contact-box">
+        <div class="contact-box modern-layout">
             <div class="contact-form-side">
-                <div id="contact-choice-container">
-                    <p class="section-description">How can we help you today? Select an option to proceed.</p>
-                    <div class="choice-buttons">
-                        <button class="choice-btn" onclick="showForm('inquiry')">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>General Enquiry</span>
-                        </button>
-                        <a href="quote.html" class="choice-btn highlight">
-                            <i class="fas fa-calculator"></i>
-                            <span>Get a Design Quote</span>
-                        </a>
+                <form class="contact-form" id="contactForm">
+                    <div class="input-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="John Doe" required>
                     </div>
-                </div>
-                
-                <form class="contact-form" id="contactForm" style="display: none;">
-                    <div style="margin-bottom: 15px; cursor: pointer; color: var(--color-primary);" onclick="showChoice()">
-                        <i class="fas fa-arrow-left"></i> Back to options
-                    </div>
-                    <input type="text" name="name" placeholder="Your Full Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <input type="phone" name="phone" placeholder="Phone Number" required>
-                    <textarea name="message" placeholder="Your Project Brief/Query" rows="4" required></textarea>
                     
-                    <div class="whatsapp-consent" style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
-                        <input type="checkbox" name="whatsapp_consent" id="whatsapp_consent" style="width: auto; margin-top: 5px; cursor: pointer;">
-                        <label for="whatsapp_consent" style="font-size: 0.9rem; color: #555; cursor: pointer;">
-                            I would like to receive project updates and design inspiration via WhatsApp.
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Phone</label>
+                        <input type="phone" name="phone" placeholder="+91 00000 00000" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea name="message" placeholder="Tell us about your requirements..." rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="whatsapp-consent-wrapper">
+                        <input type="checkbox" name="whatsapp_consent" id="whatsapp_consent">
+                        <label for="whatsapp_consent">
+                            Send me updates via WhatsApp
                         </label>
                     </div>
-                    <button type="submit" class="submit-btn">Send Inquiry</button>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
 
                 <div id="successMessage" style="display:none; text-align: center; padding: 40px 0;">
                     <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--color-primary); margin-bottom: 20px;"></i>
                     <h2>Enquiry Received</h2>
-                    <p>Thanks for contacting us. Your vision is important to us; our team will review your brief and get back to you shortly.</p>
-                    <button class="submit-btn" onclick="location.reload()" style="display:inline-block; margin-top:20px; width:auto; padding: 12px 30px;">Send Another Message</button>
+                    <p>Thanks for contacting us. We will get back to you shortly.</p>
+                    <button class="submit-btn" onclick="location.reload()" style="display:inline-block; margin-top:20px; width:auto; padding: 12px 30px;">Send Another</button>
                 </div>
             </div>
 
-            <div class="contact-details-side">
-                <h3>Studio Details</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Nivas Kunj Interiors, Badurtala lane, Krishnanagar, Agartala, Tripura West, 799001</p>
-                <p><i class="fas fa-phone-alt"></i> +91 8794183828</p>
-                <p><i class="fas fa-envelope"></i> info@nivaskunj.com</p>
-                
-                <div class="social-links-new" style="display: flex; gap: 15px; margin-top: 20px;">
-                    <a href="https://facebook.com/nivaskunjinteriors" target="_blank" style="font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/nivaskunjinteriors" target="_blank" style="font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+            <div class="contact-details-side modern-details">
+                <div class="details-card">
+                    <h3 class="details-heading">The Studio</h3>
+                    <div class="detail-row">
+                        <i class="fas fa-map-marker-alt icon-gold"></i>
+                        <div>
+                            <strong>Visit Us</strong>
+                            <p>Nivas Kunj Interiors<br>Badurtala lane, Krishnanagar<br>Agartala, Tripura West, 799001</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fas fa-phone-alt icon-gold"></i>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+91 8794183828</p>
+                            <p style="font-size: 0.85rem; color: #888;">Mon - Sat, 10am - 7pm</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fas fa-envelope icon-gold"></i>
+                        <div>
+                            <strong>Email Us</strong>
+                            <p>info@nivaskunj.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links-modern">
+                        <a href="https://facebook.com/nivaskunjinteriors" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/nivaskunjinteriors" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+                    </div>
                 </div>
-
-                <a href="https://maps.app.goo.gl/3qCR6yz6ACeZHYAK6" target="_blank" class="map-link-btn" style="display: inline-block; margin-top: 25px; font-weight: 600; color: var(--color-primary);">
-                    View Location on Map <i class="fas fa-arrow-right"></i>
+                <a href="https://maps.app.goo.gl/3qCR6yz6ACeZHYAK6" target="_blank" class="map-preview-btn">
+                    <span>Open on Google Maps</span>
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
         </div>
@@ -298,17 +336,7 @@
     </footer>
 
     <script>
-        // --- Choice Logic ---
-        function showForm(type) {
-            document.getElementById('contact-choice-container').style.display = 'none';
-            if(type === 'inquiry') {
-                document.getElementById('contactForm').style.display = 'block';
-            }
-        }
-        function showChoice() {
-            document.getElementById('contact-choice-container').style.display = 'block';
-            document.getElementById('contactForm').style.display = 'none';
-        }
+		
 
         // --- 1. Design Carousel Logic ---
         function initializeDesignCaptions() {
