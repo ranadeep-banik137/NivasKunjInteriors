@@ -240,6 +240,11 @@
     font-size: 1.8rem; 
 }
 
+.footer-brand-info img {
+    margin: 0 auto 15px auto; /* Centers the image and adds space above the name */
+    display: block;
+}
+
 .f-logo { height: 60px; filter: brightness(1.2); }
 
 /* Updated to Flex to ensure vertical borders are visible and equal height */
