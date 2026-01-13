@@ -53,7 +53,7 @@ a {
 
 /* --- Utility Classes --- */
 .content-section {
-    padding: 80px 5%; /* Slightly reduced for mobile breathability */
+    padding: 40px 5%; 
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -63,7 +63,7 @@ a {
     color: var(--color-primary);
     letter-spacing: 3px;
     text-transform: uppercase;
-	margin-bottom: 45px;
+    margin-bottom: 25px; /* Reduced from 45px */
 }
 .section-description {
     font-size: 1.05rem;
@@ -139,7 +139,7 @@ nav { display: flex; align-items: center; }
 }
 
 /* --- 2. Hero Section --- */
-.hero-section { min-height: 80vh; position: relative; overflow: hidden; background: #000; }
+.hero-section { min-height: 70vh; position: relative; overflow: hidden; background: #000; }
 .hero-slide {
     width: 100%; height: 100%; position: absolute; top: 0; left: 0;
     background-size: cover; background-position: center; opacity: 0; 
@@ -229,7 +229,7 @@ nav { display: flex; align-items: center; }
 .design-image-wrapper:hover .design-image-caption { transform: translateY(0); }
 
 /* --- 5. About --- */
-.about-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; }
+.about-content { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; align-items: center; }
 .tagline { font-size: 2rem; color: var(--color-primary); margin: 20px 0; }
 .about-visual img { width: 100%; border-radius: 8px; }
 /* =========================================
@@ -237,8 +237,8 @@ nav { display: flex; align-items: center; }
    ========================================= */
 
 .leadership-section-wrapper {
-    padding-top: 100px; /* Shifts header down away from Philosophy */
-    padding-bottom: 80px;
+    padding-top: 50px; /* Shifts header down away from Philosophy */
+    padding-bottom: 50px;
     background-color: var(--color-secondary);
 }
 
@@ -259,7 +259,7 @@ nav { display: flex; align-items: center; }
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Dramatically reduced gap */
+    gap: 10px; /* Dramatically reduced gap */
 }
 
 .leader-row {
@@ -924,6 +924,10 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
     border-right: 1px solid #222; 
 }
 
+.footer-brand-info p { 
+    font-size: 0.7rem; 
+}
+
 .footer-brand-info h3 { 
     color: white; 
     margin: 20px 0 10px; 
@@ -1346,11 +1350,11 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
 .journal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.journal-card { display: flex; background: white; border-radius: 8px; overflow: hidden; height: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.journal-card { display: flex; background: white; border-radius: 8px; overflow: hidden; height: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .journal-img { width: 40%; background-size: cover; background-position: center; }
 .journal-content { width: 60%; padding: 25px; display: flex; flex-direction: column; justify-content: center; }
 .journal-content span { color: var(--color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
