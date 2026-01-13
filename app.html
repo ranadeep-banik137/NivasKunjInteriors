@@ -3,159 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nivaskunj Interiors - Welcome</title>
+    <title>Nivaskunj Interiors | Excellence in Design</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=Montserrat:wght@200&display=swap" rel="stylesheet">
     
     <style>
-        /* --- BRAND COLORS --- */
         :root {
-            --color-copper: #a0522d;
-            --color-teal: #407d72;
-            --color-background: #fcfcfc; 
-            --color-text: #2c2c2c;
+            --gold: #B8860B;
+            --black: #050505;
         }
 
-        /* 1. BASE SETUP (DESKTOP) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background-color: var(--color-background);
-            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; 
+            height: 100%; width: 100%;
+            overflow: hidden;
+            background-color: var(--black);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- THE MOVING FILM STRIPS --- */
+        .film-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             display: flex;
-            flex-direction: column; 
+            gap: 10px;
+            filter: grayscale(30%) brightness(0.4);
+            z-index: 1;
+        }
+
+        .film-strip {
+            flex: 1;
+            height: 200%; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Directional movement for a "Movie Credits" feel */
+        .strip-1 { animation: slideVertical 40s linear infinite reverse; }
+        .strip-2 { animation: slideVertical 30s linear infinite; margin-top: -20%; }
+        .strip-3 { animation: slideVertical 45s linear infinite; }
+        .strip-4 { animation: slideVertical 35s linear infinite reverse; margin-top: -10%; }
+
+        .cell {
+            width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* High-end Interior Imagery */
+        .cell-1 { background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000'); }
+        .cell-2 { background-image: url('https://as2.ftcdn.net/jpg/02/43/15/47/1000_F_243154775_x0dGYqEWyR5TjwrkMB7IV87yGpfSaa3N.webp'); }
+        .cell-3 { background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000'); }
+        .cell-4 { background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1000'); }
+
+        @keyframes slideVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* --- CENTER OVERLAY --- */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 20%, var(--black) 95%);
+            z-index: 2;
+            display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            animation: backgroundFadeIn 2s ease-out forwards;
         }
 
-        /* 2. LOGO AND TEXT STYLES */
-        .logo-image {
-            width: 400px; 
-            height: auto;
+        .brand-content {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .logo-img {
+            width: 320px;
+            filter: brightness(0) invert(1);
             opacity: 0;
-            animation: logoFadeIn 3s ease-out forwards;
-            animation-delay: 0.2s;
-            margin-bottom: 35px; 
-            display: block; 
+            animation: logoFadeUp 2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
         }
 
         .company-name {
-            font-size: 3.5rem; 
-            font-weight: 300; 
-            letter-spacing: 8px; 
-            color: var(--color-text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.8rem;
+            color: white;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin: 15px 0;
             opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-            animation-delay: 2.5s; 
-            text-align: center;
+            animation: trackingOut 4s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+            animation-delay: 0.5s;
         }
 
-        /* 3. TAGLINE - Polished and Standard */
         .tagline {
-            font-size: 1.2rem; 
-            font-weight: 400; 
-            color: var(--color-teal);
-            margin-top: 10px;
-            letter-spacing: 0.2em; 
-            text-transform: uppercase; 
-            opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-            animation-delay: 3s; 
-            text-align: center;
+            color: var(--gold);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+			font-weight: 1000;
+            opacity: 30;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 2s;
         }
 
-        /* 4. THE LOADING BAR - MAXIMIZED LENGTH */
+        /* --- FIXED HORIZONTAL LOADER --- */
         .loader-container {
-            width: 795px; /* MAXIMIZED LENGTH (approx 30% increase from 550px) */
-            height: 6px; 
-            background-color: #e0e0e0;
-            margin-top: 60px; 
-            border-radius: 3px;
+            width: 80%;
+            max-width: 400px;
+            height: 2px; /* Thin luxury line */
+            background: rgba(255,255,255,0.1);
+            margin: 50px auto 0;
+            position: relative;
             overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 1s forwards; 
-            animation-delay: 4s; 
         }
 
-        .loader-bar {
+        .loader-fill {
+            position: absolute;
+            top: 0; left: 0;
             height: 100%;
-            width: 0%; 
-            background-color: var(--color-copper); 
-            animation: loadProgressLeftToRight 2.5s linear forwards;
-            animation-delay: 4s;
+            width: 0;
+            background: var(--gold);
+            box-shadow: 0 0 12px var(--gold);
+            animation: fillHorizontal 6.5s linear forwards;
         }
 
-        /* --- DEFINING THE ANIMATIONS (KEYFRAMES) --- */
-        
-        @keyframes backgroundFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* --- ANIMATIONS --- */
+        @keyframes logoFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes logoFadeIn {
-            to { opacity: 1; }
+        @keyframes trackingOut {
+            from { letter-spacing: 5px; opacity: 0; }
+            to { letter-spacing: 20px; opacity: 1; }
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        @keyframes loadProgressLeftToRight {
-            0% { width: 0%; }
-            100% { width: 100%; } 
-        }
-        
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media only screen and (max-width: 600px) {
-            
-            .logo-image {
-                width: 200px; 
-                margin-bottom: 20px;
-            }
+        @keyframes fillHorizontal { to { width: 100%; } }
 
-            .company-name {
-                font-size: 2rem; 
-                letter-spacing: 4px;
-            }
-
-            .tagline {
-                font-size: 0.9rem; 
-            }
-
-            .loader-container {
-                width: 100%; /* Maintain proportional length on mobile */
-                margin-top: 40px;
-            }
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .film-strip:nth-child(3), .film-strip:nth-child(4) { display: none; }
+            .company-name { font-size: 1.8rem; letter-spacing: 10px; }
+            .logo-img { width: 220px; }
+            .loader-container { width: 70%; }
         }
     </style>
 
-    <meta http-equiv="refresh" content="7; url=https://nivaskunjinteriors.netlify.app/" />
+    <meta http-equiv="refresh" content="7.5; url=https://nivaskunjinteriors.vercel.app/" />
 </head>
 <body>
 
-    <div class="intro-container">
-        <img src="https://github.com/ranadeep-banik137/NivasKunjInteriors/blob/main/logo%20transparent%20PNG.png?raw=true" 
-             alt="Nivaskunj Interiors Logo" 
-             class="logo-image">
-        
-        <div class="company-name">NIVASKUNJ INTERIORS</div>
-        
-        <div class="tagline">Designing Your Dream Space</div>
-
-        <div class="loader-container">
-            <div class="loader-bar"></div>
+    <div class="film-container">
+        <div class="film-strip strip-1">
+            <div class="cell cell-1"></div><div class="cell cell-2"></div><div class="cell cell-3"></div>
+        </div>
+        <div class="film-strip strip-2">
+            <div class="cell cell-4"></div><div class="cell cell-1"></div><div class="cell cell-2"></div>
+        </div>
+        <div class="film-strip strip-3">
+            <div class="cell cell-3"></div><div class="cell cell-4"></div><div class="cell cell-1"></div>
+        </div>
+        <div class="film-strip strip-4">
+            <div class="cell cell-2"></div><div class="cell cell-3"></div><div class="cell cell-4"></div>
         </div>
     </div>
 
-    <script type="text/javascript">
-        // Total animation time is 6.5 seconds. Redirect set to 6.8 seconds.
-        setTimeout(function() {
-            // REDIRECTS TO THE NEW URL
-            window.location.replace("https://nivas-kunj-interiors.vercel.app/");
-        }, 6800); 
-    </script>
+    <div class="overlay">
+        <div class="brand-content">
+            <img src="https://github.com/ranadeep-banik137/NivasKunjInteriors/blob/main/logo%20transparent%20PNG.png?raw=true" 
+                 alt="Nivaskunj Logo" class="logo-img">
+            
+            <h1 class="company-name">Nivaskunj</h1>
+            <p class="tagline">Designing Luxury • Crafting Dreams</p>
+
+            <div class="loader-container">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
