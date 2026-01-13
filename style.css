@@ -1010,41 +1010,135 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
     nav { flex-wrap: wrap; gap: 10px; }
     .nav-link { margin: 5px; }
 }
-/* --- Floating WhatsApp Button Styling --- */
-.whatsapp-float {
+/* --- Unified Contact Hub Styles --- */
+.contact-hub-wrapper {
     position: fixed;
-    bottom: 75px; /* Positioned slightly above the Crisp widget */
-    right: 12px;
-    background-color: #25d366;
+    bottom: 70px;
+    right: 15px;
+    z-index: 10001; /* Higher than Crisp and Headers */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* HIDE the default Crisp bubble so it doesn't overlap */
+.crisp-client .cc-kv6e .cc-1m7v {
+    display: none !important;
+}
+
+.hub-trigger {
+    width: 55px;
+    height: 55px;
+    background-color: var(--color-primary); /* Gold color from your variables */
+    border-radius: 50%;
+    border: none;
     color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 999; /* Ensure it stays on top */
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
+/* Create the 'Get Help?' tag */
+.hub-trigger::after {
+    content: 'Get Help?';
+    position: absolute;
+    right: 60px; /* Position it to the left of the button */
+    top: 90%;
+    transform: translateY(-50%);
+    background-color: var(--color-dark);
     color: white;
+    padding: 12px 74px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    pointer-events: none; /* Prevents the tag from interfering with clicks */
 }
 
-/* On mobile, adjust position if needed */
-@media (max-width: 900px) {
-    .whatsapp-float {
-        bottom: 85px;
-        right: 15px;
-        width: 50px;
-        height: 50px;
-        font-size: 25px;
-    }
+
+/* Show tag and arrow on hover */
+.hub-trigger:hover::after,
+.hub-trigger:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(-5px);
 }
+
+/* Hide the tag when the menu is active/open to keep it clean */
+.hub-trigger.active::after,
+.hub-trigger.active::before {
+    display: none;
+}
+
+/* Arrow points down when menu is open */
+.hub-trigger.active {
+    transform: rotate(180deg);
+    background-color: var(--color-dark);
+}
+
+.hub-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.hub-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.hub-item {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    position: relative;
+    border: none;
+    cursor: pointer;
+}
+
+.hub-item.whatsapp { background-color: #25D366; }
+.hub-item.call { background-color: #3498db; }
+.hub-item.ai-chat { background-color: #9b59b6; }
+
+/* Tooltip Labels */
+.hub-label {
+    position: absolute;
+    right: 60px;
+    background: var(--color-dark);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.hub-item:hover .hub-label {
+    opacity: 2;
+}
+
 
 
 
