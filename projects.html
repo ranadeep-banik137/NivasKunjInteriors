@@ -117,6 +117,45 @@
             <p>&copy; 2025 Nivas Kunj Interiors. | Designed for Distinction.</p>
         </div>
     </footer>
+	<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="293faf0d-4f52-4b5a-bca9-4847c4aeacda";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})(); // ADD THIS LINE: It hides the default floating bubble
+  $crisp.push(["do", "chat:hide"]);</script>
+	<div class="contact-hub-wrapper">
+		<div class="hub-menu" id="hubMenu">
+			<a href="tel:+918794183828" class="hub-item call" title="Call Us">
+				<i class="fas fa-phone-alt"></i>
+				<span class="hub-label">Call Us</span>
+			</a>
+			<a href="https://wa.me/918794183828" class="hub-item whatsapp" target="_blank" title="WhatsApp">
+				<i class="fab fa-whatsapp"></i>
+				<span class="hub-label">WhatsApp</span>
+			</a>
+			<button class="hub-item ai-chat" onclick="$crisp.push(['do', 'chat:show']); $crisp.push(['do', 'chat:open']);" title="AI Chatbot">
+				<i class="fas fa-robot"></i>
+				<span class="hub-label">AI Chat</span>
+			</button>
+		</div>
 
+		<button class="hub-trigger" id="hubTrigger" aria-label="Contact Options">
+			<i class="fas fa-chevron-up trigger-icon"></i>
+		</button>
+	</div>
+
+	<script>
+		const hubTrigger = document.getElementById('hubTrigger');
+		const hubMenu = document.getElementById('hubMenu');
+
+		hubTrigger.addEventListener('click', () => {
+			hubMenu.classList.toggle('active');
+			hubTrigger.classList.toggle('active');
+		});
+
+		// Close menu if user clicks anywhere else on the screen
+		window.addEventListener('click', (e) => {
+			if (!document.querySelector('.contact-hub-wrapper').contains(e.target)) {
+				hubMenu.classList.remove('active');
+				hubTrigger.classList.remove('active');
+			}
+		});
+	</script>
 </body>
 </html>
