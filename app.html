@@ -3,159 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nivaskunj Interiors - Welcome</title>
+    <title>Nivaskunj Interiors | Loading...</title>
     
     <style>
-        /* --- BRAND COLORS --- */
         :root {
-            --color-copper: #a0522d;
-            --color-teal: #407d72;
-            --color-background: #fcfcfc; 
-            --color-text: #2c2c2c;
+            --color-gold: #B8860B;
+            --color-dark: #1a1a1a;
+            --color-glass: rgba(255, 255, 255, 0.03);
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
         }
 
-        /* 1. BASE SETUP (DESKTOP) */
+        /* Luxury Gradient Background */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: var(--color-background);
-            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; 
+            background: radial-gradient(circle at center, #2c2c2c 0%, #121212 100%);
+            color: #ffffff;
+            font-family: var(--font-body);
             display: flex;
-            flex-direction: column; 
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            animation: backgroundFadeIn 2s ease-out forwards;
         }
 
-        /* 2. LOGO AND TEXT STYLES */
+        .intro-wrapper {
+            text-align: center;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            background: var(--color-glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-width: 90%;
+        }
+
+        /* Smooth Reveal Animations */
         .logo-image {
-            width: 400px; 
+            width: 320px;
             height: auto;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1); /* Makes logo white for dark theme */
             opacity: 0;
-            animation: logoFadeIn 3s ease-out forwards;
-            animation-delay: 0.2s;
-            margin-bottom: 35px; 
-            display: block; 
+            transform: translateY(20px);
+            animation: revealUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .company-name {
-            font-size: 3.5rem; 
-            font-weight: 300; 
-            letter-spacing: 8px; 
-            color: var(--color-text);
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
             opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-            animation-delay: 2.5s; 
-            text-align: center;
+            animation: revealUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: 0.4s;
         }
 
-        /* 3. TAGLINE - Polished and Standard */
         .tagline {
-            font-size: 1.2rem; 
-            font-weight: 400; 
-            color: var(--color-teal);
-            margin-top: 10px;
-            letter-spacing: 0.2em; 
-            text-transform: uppercase; 
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            color: var(--color-gold);
+            text-transform: uppercase;
             opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-            animation-delay: 3s; 
-            text-align: center;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 1.2s;
         }
 
-        /* 4. THE LOADING BAR - MAXIMIZED LENGTH */
+        /* Minimalist Line Loader */
         .loader-container {
-            width: 795px; /* MAXIMIZED LENGTH (approx 30% increase from 550px) */
-            height: 6px; 
-            background-color: #e0e0e0;
-            margin-top: 60px; 
-            border-radius: 3px;
+            width: 250px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 50px auto 0;
+            position: relative;
             overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 1s forwards; 
-            animation-delay: 4s; 
         }
 
         .loader-bar {
+            position: absolute;
+            left: 0;
             height: 100%;
-            width: 0%; 
-            background-color: var(--color-copper); 
-            animation: loadProgressLeftToRight 2.5s linear forwards;
-            animation-delay: 4s;
+            width: 0;
+            background: var(--color-gold);
+            box-shadow: 0 0 10px var(--color-gold);
+            animation: progress 4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+            animation-delay: 1.5s;
         }
 
-        /* --- DEFINING THE ANIMATIONS (KEYFRAMES) --- */
-        
-        @keyframes backgroundFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes logoFadeIn {
-            to { opacity: 1; }
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
             to { opacity: 1; }
         }
 
-        @keyframes loadProgressLeftToRight {
-            0% { width: 0%; }
-            100% { width: 100%; } 
+        @keyframes progress {
+            0% { width: 0%; left: 0; }
+            100% { width: 100%; }
         }
-        
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media only screen and (max-width: 600px) {
-            
-            .logo-image {
-                width: 200px; 
-                margin-bottom: 20px;
-            }
 
-            .company-name {
-                font-size: 2rem; 
-                letter-spacing: 4px;
-            }
-
-            .tagline {
-                font-size: 0.9rem; 
-            }
-
-            .loader-container {
-                width: 100%; /* Maintain proportional length on mobile */
-                margin-top: 40px;
-            }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .company-name { font-size: 1.4rem; letter-spacing: 6px; }
+            .logo-image { width: 220px; }
+            .tagline { font-size: 0.7rem; letter-spacing: 3px; }
         }
     </style>
 
-    <meta http-equiv="refresh" content="7; url=https://nivaskunjinteriors.netlify.app/" />
+    <meta http-equiv="refresh" content="6; url=https://nivaskunjinteriors.vercel.app/" />
 </head>
 <body>
 
-    <div class="intro-container">
+    <div class="intro-wrapper">
         <img src="https://github.com/ranadeep-banik137/NivasKunjInteriors/blob/main/logo%20transparent%20PNG.png?raw=true" 
-             alt="Nivaskunj Interiors Logo" 
-             class="logo-image">
+             alt="Logo" class="logo-image">
         
-        <div class="company-name">NIVASKUNJ INTERIORS</div>
-        
-        <div class="tagline">Designing Your Dream Space</div>
+        <div class="company-name">Nivaskunj</div>
+        <div class="tagline">Interiors • Architecture • Design</div>
 
         <div class="loader-container">
             <div class="loader-bar"></div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        // Total animation time is 6.5 seconds. Redirect set to 6.8 seconds.
-        setTimeout(function() {
-            // REDIRECTS TO THE NEW URL
-            window.location.replace("https://nivas-kunj-interiors.vercel.app/");
-        }, 6800); 
-    </script>
 
 </body>
 </html>
