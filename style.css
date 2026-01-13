@@ -9,6 +9,21 @@
     --transition-speed: 0.35s;
 }
 
+/* Custom Gold Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-secondary); }
+::-webkit-scrollbar-thumb { 
+    background: var(--color-primary); 
+    border-radius: 10px; 
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -1228,11 +1243,6 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
     transition: all 0.3s;
 }
 
-.service-card-premium i {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-}
-
 /* The Background Image Layer */
 .card-bg {
     position: absolute;
@@ -1351,6 +1361,3 @@ footer { padding: 40px; text-align: center; background: var(--color-dark); color
     .journal-grid { grid-template-columns: 1fr; }
     .process-steps { flex-direction: column; }
 }
-
-
-
